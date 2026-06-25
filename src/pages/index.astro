@@ -190,7 +190,7 @@ const community = [
       <p class="tagline">{profile.tagline}</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
-        <a class="btn btn-ghost" href="#topics">What I do</a>
+        <a class="btn btn-ghost" href="#focus">What I do</a>
       </div>
     </div>
   </section>
@@ -231,11 +231,11 @@ const community = [
     </div>
   </section>
 
-  <!-- Topics with partners -->
-  <section id="topics">
+  <!-- Focus areas with partners -->
+  <section id="focus">
     <div class="container">
-      <p class="eyebrow">What I work on</p>
-      <h2 class="section-title">Topics I work on with partners</h2>
+      <p class="eyebrow">What I do</p>
+      <h2 class="section-title">Focus areas</h2>
       <p class="section-lead">Areas where I help Microsoft partners design, build, and ship.</p>
       <div class="grid grid-3">
         {topics.map((t) => (
@@ -256,7 +256,7 @@ const community = [
   <section id="experience">
     <div class="container">
       <p class="eyebrow">Career</p>
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">Work experience</h2>
       <p class="section-lead">Where I've worked and what I focused on.</p>
       <div class="timeline">
         {experience.map((e) => (
@@ -345,26 +345,6 @@ const community = [
     </div>
   </section>
 
-  <!-- Interests -->
-  <section id="interests">
-    <div class="container">
-      <p class="eyebrow">Beyond work</p>
-      <h2 class="section-title">Personal interests</h2>
-      <p class="section-lead">
-        When I'm not designing data and AI solutions, I'm usually outdoors — most often on a mountain trail.
-      </p>
-      <div class="grid grid-3">
-        {interests.map((i) => (
-          <article class="card">
-            <div class="interest-icon" aria-hidden="true">{i.icon}</div>
-            <h3>{i.title}</h3>
-            <p style="margin:0">{i.description}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Blog preview -->
   {articles.length > 0 && (
     <section id="blog-preview">
@@ -387,6 +367,26 @@ const community = [
       </div>
     </section>
   )}
+
+  <!-- Interests -->
+  <section id="interests">
+    <div class="container">
+      <p class="eyebrow">Beyond work</p>
+      <h2 class="section-title">Personal interests</h2>
+      <p class="section-lead">
+        When I'm not designing data and AI solutions, I'm usually outdoors — most often on a mountain trail.
+      </p>
+      <div class="grid grid-3">
+        {interests.map((i) => (
+          <article class="card">
+            <div class="interest-icon" aria-hidden="true">{i.icon}</div>
+            <h3>{i.title}</h3>
+            <p style="margin:0">{i.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Contact -->
   <section id="contact" class="contact">

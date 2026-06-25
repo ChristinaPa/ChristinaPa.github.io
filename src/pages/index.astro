@@ -96,14 +96,17 @@ const education = [
   },
 ];
 
-const certifications = [
+const certificationsAssociate = [
   'Microsoft Fabric Analytics Engineer Associate',
   'Microsoft Certified: Azure Data Engineer Associate',
   'Microsoft Certified: Azure AI Engineer Associate',
-  'Microsoft Certified: Dynamics 365 Fundamentals (CRM)',
-  'Microsoft Certified: Azure Data Fundamentals',
+];
+
+const certificationsFundamentals = [
   'Microsoft Certified: Azure Fundamentals',
   'Microsoft Certified: Azure AI Fundamentals',
+  'Microsoft Certified: Azure Data Fundamentals',
+  'Microsoft Certified: Dynamics 365 Fundamentals (CRM)',
   'Databricks Lakehouse Fundamentals',
   'Databricks Generative AI Fundamentals',
 ];
@@ -328,9 +331,18 @@ const community = [
         Microsoft and Databricks certifications.{' '}
         <a href={profile.credly} rel="noopener">View on Credly →</a>
       </p>
-      <ul class="skill-list">
-        {certifications.map((c) => <li>{c}</li>)}
-      </ul>
+      <div class="cert-group">
+        <h3>Associate level</h3>
+        <ul class="skill-list">
+          {certificationsAssociate.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+      <div class="cert-group">
+        <h3>Fundamentals</h3>
+        <ul class="skill-list">
+          {certificationsFundamentals.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
     </div>
   </section>
 

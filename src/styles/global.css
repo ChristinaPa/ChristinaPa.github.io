@@ -362,6 +362,14 @@ section {
   font-size: 1rem;
   margin: 0 0 0.75rem;
 }
+.cert-group {
+  margin-bottom: 1.5rem;
+}
+.cert-group h3 {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+}
 .skill-list {
   display: flex;
   flex-wrap: wrap;

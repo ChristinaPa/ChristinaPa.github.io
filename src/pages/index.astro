@@ -17,6 +17,8 @@ const profile = {
   // Replace with your public Credly profile URL when you have it.
   credly: 'https://www.credly.com/',
   location: 'Munich, Germany',
+  welcome:
+    'Welcome to my little corner of the internet! I’m a Greek who fell in love with Munich, a Partner Solution Architect at Microsoft by day, and a mountain-chaser, runner, and lifelong learner the rest of the time. Grab a coffee, scroll around, and get to know me a bit.',
 };
 
 const topics = [
@@ -129,8 +131,12 @@ const interests = [
   {
     icon: '🥾',
     title: 'Hiking adventures',
-    description:
-      'Hiking is my favourite way to switch off. Two trails I\'ll never forget: trekking to Everest Base Camp in Nepal, and standing on top of the Zugspitze, Germany\'s highest peak. Closer to home, most weekends you\'ll find me somewhere in the Bavarian Alps.',
+    description: 'Hiking is my favourite way to switch off. Two trails I\'ll never forget:',
+    bullets: [
+      'Trekking to Everest Base Camp in Nepal 🇳🇵',
+      'Standing on top of the Zugspitze, Germany\'s highest peak 🇩🇪',
+    ],
+    note: 'Closer to home, most weekends you\'ll find me somewhere in the Bavarian Alps.',
   },
   {
     icon: '✈️',
@@ -191,7 +197,7 @@ const community = [
       </div>
       <p class="eyebrow">{profile.role}</p>
       <h1>Hi, I'm <span class="gradient">{profile.name}</span></h1>
-      <p class="tagline">{profile.tagline}</p>
+      <p class="tagline">{profile.welcome}</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
         <a class="btn btn-ghost" href="#focus">What I do</a>
@@ -407,6 +413,12 @@ const community = [
             <div class="interest-icon" aria-hidden="true">{i.icon}</div>
             <h3>{i.title}</h3>
             <p style="margin:0">{i.description}</p>
+            {i.bullets && (
+              <ul class="interest-bullets">
+                {i.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            )}
+            {i.note && <p style="margin:0">{i.note}</p>}
           </article>
         ))}
       </div>

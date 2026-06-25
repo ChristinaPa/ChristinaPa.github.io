@@ -38,6 +38,15 @@ const topics = [
   },
 ];
 
+const whatIDo = [
+  'Delivering technical trainings and hands-on workshops to upskill partner teams',
+  'Running architecture reviews and design sessions to validate solutions before they scale',
+  'Building proofs of concept that de-risk new ideas and prove value quickly',
+  'Collaborating closely with account teams to align technical strategy with business goals',
+  'Guiding partners on reliable, secure, and cost-efficient cloud and AI solutions',
+  'Driving GitHub and developer-productivity adoption across the partner ecosystem',
+];
+
 const experienceMicrosoft = [
   {
     role: 'Partner Solution Architect — EMEA',
@@ -288,6 +297,17 @@ const funFacts = [
             </div>
           </article>
         ))}
+      </div>
+
+      <div class="what-i-do">
+        <h3 class="experience-group-title">In a typical week</h3>
+        <p class="section-lead">
+          My role spans a mix of delivery, advisory, and enablement work — with a particular focus
+          on the German market 🇩🇪.
+        </p>
+        <ul class="what-i-do-list">
+          {whatIDo.map((item) => <li>{item}</li>)}
+        </ul>
       </div>
     </div>
   </section>

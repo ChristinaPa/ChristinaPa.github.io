@@ -121,6 +121,27 @@ const skillGroups = [
     items: ['Azure', 'Solution Architecture', 'Lakehouse', 'Proof of Concepts', 'Architecture Reviews'],
   },
 ];
+
+const interests = [
+  {
+    icon: '🥾',
+    title: 'Hiking adventures',
+    description:
+      'Most weekends you\'ll find me on a trail. I love long hikes in the Bavarian Alps near Munich — chasing summit views, alpine lakes, and the quiet that comes with a few hours on the mountain.',
+  },
+  {
+    icon: '🏔️',
+    title: 'Mountains & the outdoors',
+    description:
+      'From the Greek mountains I grew up near to the Alps I explore now, being outdoors keeps me grounded. There\'s no better way to reset and think clearly than a long climb.',
+  },
+  {
+    icon: '📸',
+    title: 'Travel & exploring',
+    description:
+      'I enjoy discovering new places, cultures, and routes — and capturing the views along the way. New trails and new cities both bring the same sense of curiosity.',
+  },
+];
 // ---------------------------------------------------------------------------
 
 const posts = (await getCollection('blog'))
@@ -263,6 +284,26 @@ const fmt = (d: Date) =>
           </ul>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests">
+    <div class="container">
+      <p class="eyebrow">Beyond work</p>
+      <h2 class="section-title">Personal interests</h2>
+      <p class="section-lead">
+        When I'm not designing data and AI solutions, I'm usually outdoors — most often on a mountain trail.
+      </p>
+      <div class="grid grid-3">
+        {interests.map((i) => (
+          <article class="card">
+            <div class="interest-icon" aria-hidden="true">{i.icon}</div>
+            <h3>{i.title}</h3>
+            <p style="margin:0">{i.description}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 

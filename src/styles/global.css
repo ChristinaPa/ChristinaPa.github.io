@@ -370,6 +370,12 @@ section {
   font-weight: 500;
 }
 
+.interest-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
 /* Contact */
 .contact {
   text-align: center;

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { articles } from '../data/articles';
 
 const base = import.meta.env.BASE_URL;
 
@@ -150,20 +150,46 @@ const interests = [
       'I enjoy discovering new places, cultures, and routes — and capturing the views along the way. New trails and new cities both bring the same sense of curiosity.',
   },
 ];
+
+const community = [
+  {
+    icon: '🌍',
+    title: 'Mosaic Inclusion Network',
+    description:
+      'Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation across our community at Microsoft.',
+  },
+  {
+    icon: '🤝',
+    title: 'Building multicultural communities',
+    description:
+      'Bringing people from different cultures and backgrounds together is something I genuinely love. Creating welcoming, inclusive spaces where everyone belongs is a thread that runs through everything I do.',
+  },
+  {
+    icon: '🎓',
+    title: 'Student leadership & volunteering',
+    description:
+      'From AIESEC and the ECESCON student engineering conference to my time as a Microsoft Learn Student Ambassador, I have always invested in mentoring others and growing diverse tech communities.',
+  },
+];
 // ---------------------------------------------------------------------------
-
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 
 <BaseLayout title={`${profile.name} — ${profile.role}`} description={profile.tagline}>
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
+      <div class="avatar-wrap">
+        <img
+          class="avatar"
+          src={`${base}profile.jpg`}
+          alt={profile.name}
+          width="150"
+          height="150"
+          loading="eager"
+          onerror="this.style.display='none'"
+        />
+        <span class="avatar-initials" aria-hidden="true">CP</span>
+      </div>
       <p class="eyebrow">{profile.role}</p>
       <h1>Hi, I'm <span class="gradient">{profile.name}</span></h1>
       <p class="tagline">{profile.tagline}</p>
@@ -296,6 +322,27 @@ const fmt = (d: Date) =>
     </div>
   </section>
 
+  <!-- Community & Inclusion -->
+  <section id="community">
+    <div class="container">
+      <p class="eyebrow">What I care about</p>
+      <h2 class="section-title">Community &amp; inclusion</h2>
+      <p class="section-lead">
+        Beyond architecture, I'm passionate about multicultural communities and inclusion — bringing
+        people together and making sure everyone has a seat at the table.
+      </p>
+      <div class="grid grid-3">
+        {community.map((c) => (
+          <article class="card">
+            <div class="interest-icon" aria-hidden="true">{c.icon}</div>
+            <h3>{c.title}</h3>
+            <p style="margin:0">{c.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Interests -->
   <section id="interests">
     <div class="container">
@@ -317,23 +364,23 @@ const fmt = (d: Date) =>
   </section>
 
   <!-- Blog preview -->
-  {posts.length > 0 && (
+  {articles.length > 0 && (
     <section id="blog-preview">
       <div class="container">
         <p class="eyebrow">Writing</p>
         <h2 class="section-title">From the blog</h2>
-        <p class="section-lead">Thoughts on architecture, cloud, and building things.</p>
+        <p class="section-lead">Articles I've published on cloud, AI, and architecture.</p>
         <ul class="post-list">
-          {posts.map((post) => (
+          {articles.slice(0, 3).map((a) => (
             <li class="post-item card">
-              <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
-              <h3><a href={`${base}blog/${post.id}`}>{post.data.title}</a></h3>
-              <p style="margin:0">{post.data.description}</p>
+              <span class="post-source">{a.source}</span>
+              <h3><a href={a.url} target="_blank" rel="noopener">{a.title}</a></h3>
+              <p style="margin:0">{a.description}</p>
             </li>
           ))}
         </ul>
         <p style="margin-top:1.5rem">
-          <a class="btn btn-ghost" href={`${base}blog`}>All posts →</a>
+          <a class="btn btn-ghost" href={`${base}blog`}>All articles →</a>
         </p>
       </div>
     </section>

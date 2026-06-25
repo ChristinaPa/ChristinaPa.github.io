@@ -9,6 +9,7 @@ const nav = [
   { href: `${base}#projects`, label: 'Projects' },
   { href: `${base}#experience`, label: 'Experience' },
   { href: `${base}#skills`, label: 'Skills' },
+  { href: `${base}#community`, label: 'Community' },
   { href: `${base}#interests`, label: 'Interests' },
   { href: `${base}blog`, label: 'Blog' },
   { href: `${base}#contact`, label: 'Contact' },
@@ -16,7 +17,7 @@ const nav = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,8 +64,8 @@ const nav = [
       (function () {
         const root = document.documentElement;
         const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored ?? (prefersDark ? 'dark' : 'light');
+        // Dark mode is the default; respect an explicit saved preference.
+        const theme = stored ?? 'dark';
         root.dataset.theme = theme;
 
         document.addEventListener('click', (e) => {

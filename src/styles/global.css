@@ -376,6 +376,49 @@ section {
   margin-bottom: 0.5rem;
 }
 
+/* Avatar */
+.avatar-wrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 0.75rem;
+}
+.avatar,
+.avatar-initials {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-elev);
+  box-shadow: var(--shadow);
+}
+.avatar {
+  position: relative;
+  object-fit: cover;
+  z-index: 1;
+  background: var(--bg-subtle);
+  display: block;
+}
+.avatar-initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  z-index: 0;
+}
+
+.post-source {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
 /* Contact */
 .contact {
   text-align: center;

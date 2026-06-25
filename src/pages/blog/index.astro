@@ -1,36 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-
-const base = import.meta.env.BASE_URL;
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-
-const fmt = (d: Date) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+import { articles } from '../../data/articles';
 ---
 
-<BaseLayout title="Blog — Christina Pardali" description="Notes on architecture, cloud, and building things.">
+<BaseLayout title="Blog — Christina Pardali" description="Articles and writing by Christina Pardali.">
   <section>
     <div class="container">
       <p class="eyebrow">Writing</p>
       <h1 class="section-title">Blog</h1>
-      <p class="section-lead">Notes on architecture, cloud, AI, and building things that ship.</p>
+      <p class="section-lead">Articles I've published on cloud, AI, and architecture.</p>
       <ul class="post-list">
-        {posts.map((post) => (
+        {articles.map((a) => (
           <li class="post-item card">
-            <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
-            <h3><a href={`${base}blog/${post.id}`}>{post.data.title}</a></h3>
-            <p style="margin:0">{post.data.description}</p>
-            {post.data.tags && (
-              <div class="tag-row" style="margin-top:0.75rem">
-                {post.data.tags.map((t) => <span class="tag">{t}</span>)}
-              </div>
-            )}
+            <span class="post-source">{a.source}</span>
+            <h3><a href={a.url} target="_blank" rel="noopener">{a.title}</a></h3>
+            <p style="margin:0">{a.description}</p>
+            <p style="margin:0.75rem 0 0">
+              <a href={a.url} target="_blank" rel="noopener">Read on {a.source} →</a>
+            </p>
           </li>
         ))}
       </ul>
     </div>
   </section>
 </BaseLayout>
+

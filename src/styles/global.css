@@ -395,6 +395,11 @@ section {
 .interest-bullets li::marker {
   color: var(--accent);
 }
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
 
 /* Avatar */
 .avatar-wrap {

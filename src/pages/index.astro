@@ -172,8 +172,10 @@ const community = [
     title: 'Student leadership & volunteering',
     description:
       'From AIESEC and the ECESCON student engineering conference to my time as a Microsoft Learn Student Ambassador, I have always invested in mentoring others and growing diverse tech communities.',
-    link: 'https://mvp.microsoft.com/studentambassadors',
-    linkLabel: 'Microsoft Learn Student Ambassadors',
+    links: [
+      { url: 'https://aiesec.org/', label: 'AIESEC' },
+      { url: 'https://mvp.microsoft.com/studentambassadors', label: 'Microsoft Learn Student Ambassadors' },
+    ],
   },
 ];
 // ---------------------------------------------------------------------------
@@ -368,6 +370,13 @@ const community = [
             {c.link && (
               <p style="margin:0.75rem 0 0">
                 <a href={c.link} target="_blank" rel="noopener">{c.linkLabel} →</a>
+              </p>
+            )}
+            {c.links && (
+              <p style="margin:0.75rem 0 0" class="community-links">
+                {c.links.map((l) => (
+                  <a href={l.url} target="_blank" rel="noopener">{l.label} →</a>
+                ))}
               </p>
             )}
           </article>

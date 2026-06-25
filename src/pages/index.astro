@@ -36,7 +36,7 @@ const topics = [
   },
 ];
 
-const experience = [
+const experienceMicrosoft = [
   {
     role: 'Partner Solution Architect — EMEA',
     org: 'Microsoft',
@@ -65,6 +65,9 @@ const experience = [
     summary:
       'Authored a Microsoft Learn path on Azure Health Bot and spoke at virtual events on Azure Machine Learning, Power Platform, Cloud Security, and Health Bot — including the Global AI Student Conference 2021 — while building local tech communities.',
   },
+];
+
+const experienceEngineering = [
   {
     role: 'Junior Radio Frequency Engineer',
     org: 'Further Enterprise Solutions (FES)',
@@ -261,8 +264,21 @@ const community = [
       <p class="eyebrow">Career</p>
       <h2 class="section-title">Work experience</h2>
       <p class="section-lead">Where I've worked and what I focused on.</p>
+
+      <h3 class="experience-group-title">My Microsoft journey</h3>
       <div class="timeline">
-        {experience.map((e) => (
+        {experienceMicrosoft.map((e) => (
+          <div class="timeline-item">
+            <h3>{e.role} · <span style="color:var(--accent)">{e.org}</span></h3>
+            <p class="timeline-meta">{e.period}</p>
+            <p>{e.summary}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="experience-group-title">When I thought I wanted to be an engineer</h3>
+      <div class="timeline">
+        {experienceEngineering.map((e) => (
           <div class="timeline-item">
             <h3>{e.role} · <span style="color:var(--accent)">{e.org}</span></h3>
             <p class="timeline-meta">{e.period}</p>

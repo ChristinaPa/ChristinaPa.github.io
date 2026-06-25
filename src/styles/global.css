@@ -311,6 +311,15 @@ section {
 }
 
 /* Timeline */
+.experience-group-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: var(--accent);
+}
+.experience-group-title:first-of-type {
+  margin-top: 1.5rem;
+}
 .timeline {
   display: grid;
   gap: 1rem;

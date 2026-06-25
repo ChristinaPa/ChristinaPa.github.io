@@ -399,10 +399,10 @@ const funFacts = [
           <article class="card">
             <div class="interest-icon" aria-hidden="true">{c.icon}</div>
             <h3>{c.title}</h3>
+            <p style="margin:0">{c.description}</p>
             {c.image && (
               <img class="community-image" src={c.image} alt={c.imageAlt} loading="lazy" />
             )}
-            <p style="margin:0">{c.description}</p>
             {c.link && (
               <p style="margin:0.75rem 0 0">
                 <a href={c.link} target="_blank" rel="noopener">{c.linkLabel} →</a>

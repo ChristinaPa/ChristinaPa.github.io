@@ -439,6 +439,16 @@ section {
   gap: 0.25rem 1rem;
 }
 
+.community-image {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0.75rem 0;
+  border: 1px solid var(--border);
+}
+
 /* Avatar */
 .avatar-wrap {
   position: relative;

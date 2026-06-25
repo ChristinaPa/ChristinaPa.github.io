@@ -19,27 +19,41 @@ const profile = {
   location: 'Munich, Germany',
 };
 
-const projects = [
+const topics = [
   {
-    title: 'Partner AI Applications & GitHub Adoption',
+    icon: '🤖',
+    title: 'AI applications in the cloud',
     description:
-      'Work with EMEA partners to design reliable, performant, secure, and cost-efficient AI applications in the cloud, guide their cloud services offerings, and drive GitHub adoption.',
-    tags: ['AI Applications', 'GitHub', 'Cloud'],
-    link: profile.linkedin,
+      'Helping partners design and deploy AI applications that are reliable, secure, and production-ready — from first prototype to scale.',
+    tags: ['Azure AI', 'GenAI', 'Architecture'],
   },
   {
-    title: 'Microsoft Fabric Executive Briefings',
+    icon: '🐙',
+    title: 'GitHub adoption',
     description:
-      'Delivered Microsoft Fabric and Data Analytics sessions at the Microsoft Executive Center EMEA in Munich, engaging 50+ senior decision makers across industries.',
-    tags: ['Microsoft Fabric', 'Data Analytics', 'Executive'],
-    link: profile.linkedin,
+      'Driving GitHub adoption across the partner ecosystem — modern developer workflows, automation, and GitHub Copilot.',
+    tags: ['GitHub', 'Copilot', 'DevOps'],
   },
   {
-    title: 'Azure Health Bot Learning Path (Publication)',
+    icon: '🔒',
+    title: 'Secure & cost-efficient solutions',
     description:
-      'Co-authored the Microsoft Learn path "Create intelligent health bots with Azure Health Bot," teaching developers to build healthcare bots.',
-    tags: ['Azure Health Bot', 'Microsoft Learn', 'AI'],
-    link: 'https://docs.microsoft.com/learn/paths/create-bots-azure-health-bot/',
+      'Guiding partners to build performant, secure, and cost-efficient cloud solutions with the right architecture and trade-offs.',
+    tags: ['Security', 'FinOps', 'Well-Architected'],
+  },
+  {
+    icon: '📊',
+    title: 'Data & analytics on Microsoft Fabric',
+    description:
+      'Architecting modern data and analytics solutions on Microsoft Fabric, Databricks, and Synapse — including lakehouse and AI migrations.',
+    tags: ['Microsoft Fabric', 'Lakehouse', 'Power BI'],
+  },
+  {
+    icon: '🚀',
+    title: 'Cloud services offerings',
+    description:
+      'Helping partners shape and launch their own cloud services offerings built on top of Microsoft technologies.',
+    tags: ['Go-to-Market', 'Cloud', 'Strategy'],
   },
 ];
 
@@ -193,7 +207,7 @@ const community = [
       <p class="tagline">{profile.tagline}</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
-        <a class="btn btn-ghost" href="#projects">View work</a>
+        <a class="btn btn-ghost" href="#topics">What I do</a>
       </div>
     </div>
   </section>
@@ -231,25 +245,21 @@ const community = [
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects">
+  <!-- Topics with partners -->
+  <section id="topics">
     <div class="container">
-      <p class="eyebrow">Portfolio</p>
-      <h2 class="section-title">Selected projects</h2>
-      <p class="section-lead">A few things I've designed, built, or contributed to.</p>
+      <p class="eyebrow">What I work on</p>
+      <h2 class="section-title">Topics I work on with partners</h2>
+      <p class="section-lead">Areas where I help Microsoft partners design, build, and ship.</p>
       <div class="grid grid-3">
-        {projects.map((p) => (
+        {topics.map((t) => (
           <article class="card">
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
+            <div class="interest-icon" aria-hidden="true">{t.icon}</div>
+            <h3>{t.title}</h3>
+            <p>{t.description}</p>
             <div class="tag-row">
-              {p.tags.map((t) => <span class="tag">{t}</span>)}
+              {t.tags.map((tag) => <span class="tag">{tag}</span>)}
             </div>
-            {p.link && (
-              <p style="margin-top:1rem;margin-bottom:0">
-                <a href={p.link} rel="noopener">View →</a>
-              </p>
-            )}
           </article>
         ))}
       </div>

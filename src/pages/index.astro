@@ -185,8 +185,6 @@ const community = [
     title: 'ReDI School volunteering',
     description:
       'Volunteering with ReDI School of Digital Integration: I taught a semester of AI Fundamentals to newcomers as part of a group of teachers, and returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching.',
-    image: `${base}images/redi.jpg`,
-    imageAlt: 'Christina volunteering with ReDI School',
     link: 'https://www.redi-school.org/',
     linkLabel: 'Visit ReDI School',
   },
@@ -419,9 +417,6 @@ const funFacts = [
             <div class="interest-icon" aria-hidden="true">{c.icon}</div>
             <h3>{c.title}</h3>
             <p style="margin:0">{c.description}</p>
-            {c.image && (
-              <img class="community-image" src={c.image} alt={c.imageAlt} loading="lazy" />
-            )}
             {c.link && (
               <p style="margin:0.75rem 0 0">
                 <a href={c.link} target="_blank" rel="noopener">{c.linkLabel} →</a>

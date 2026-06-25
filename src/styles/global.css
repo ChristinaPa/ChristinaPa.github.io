@@ -266,6 +266,24 @@ section {
   color: var(--text-muted);
   margin: 0 0 1rem;
 }
+.card ul {
+  color: var(--text-muted);
+}
+.card ul li {
+  color: var(--text-muted);
+}
+.footnote-ref {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  vertical-align: super;
+  font-size: 0.7em;
+}
+.footnote {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
 .tag-row {
   display: flex;
   flex-wrap: wrap;

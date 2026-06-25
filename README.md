@@ -1,5 +1,7 @@
 # Christina Pardali — Personal Site
 
+🌐 **Live site: [christinapa.github.io](https://christinapa.github.io/)**
+
 A fast, accessible personal branding site built with [Astro](https://astro.build) and deployed for free on **GitHub Pages**.
 
 ## Sections

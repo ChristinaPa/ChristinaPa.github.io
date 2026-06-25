@@ -154,12 +154,16 @@ const community = [
     title: 'ReDI School volunteering',
     description:
       'Volunteering with ReDI School of Digital Integration: I taught a semester of AI Fundamentals to newcomers as part of a group of teachers, and returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching.',
+    link: 'https://www.redi-school.org/',
+    linkLabel: 'Visit ReDI School',
   },
   {
     icon: '🎓',
     title: 'Student leadership & volunteering',
     description:
       'From AIESEC and the ECESCON student engineering conference to my time as a Microsoft Learn Student Ambassador, I have always invested in mentoring others and growing diverse tech communities.',
+    link: 'https://mvp.microsoft.com/studentambassadors',
+    linkLabel: 'Microsoft Learn Student Ambassadors',
   },
 ];
 // ---------------------------------------------------------------------------
@@ -330,6 +334,11 @@ const community = [
             <div class="interest-icon" aria-hidden="true">{c.icon}</div>
             <h3>{c.title}</h3>
             <p style="margin:0">{c.description}</p>
+            {c.link && (
+              <p style="margin:0.75rem 0 0">
+                <a href={c.link} target="_blank" rel="noopener">{c.linkLabel} →</a>
+              </p>
+            )}
           </article>
         ))}
       </div>

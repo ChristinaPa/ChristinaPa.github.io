@@ -1,0 +1,93 @@
+---
+const { title, description } = Astro.props as { title: string; description?: string };
+const base = import.meta.env.BASE_URL;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonical = site + Astro.url.pathname;
+
+const nav = [
+  { href: `${base}#about`, label: 'About' },
+  { href: `${base}#projects`, label: 'Projects' },
+  { href: `${base}#experience`, label: 'Experience' },
+  { href: `${base}#skills`, label: 'Skills' },
+  { href: `${base}blog`, label: 'Blog' },
+  { href: `${base}#contact`, label: 'Contact' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description ?? 'Personal site of Christina Pardali, AI & Analytics Cloud Solution Architect.'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description ?? ''} />
+    <meta property="og:type" content="website" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href={base}>CP<span>.</span></a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu">
+          {nav.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+          <li>
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {new Date().getFullYear()} Christina Pardali. Built with <a href="https://astro.build" rel="noopener">Astro</a>.</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      // Theme toggle with persistence + system preference fallback
+      (function () {
+        const root = document.documentElement;
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored ?? (prefersDark ? 'dark' : 'light');
+        root.dataset.theme = theme;
+
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target instanceof Element && target.closest('.theme-toggle')) {
+            const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+            root.dataset.theme = next;
+            localStorage.setItem('theme', next);
+          }
+          if (target instanceof Element && target.closest('.nav-toggle')) {
+            const btn = target.closest('.nav-toggle');
+            const menu = document.getElementById('nav-menu');
+            const open = menu.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(open));
+          }
+          if (target instanceof Element && target.closest('.nav-menu a')) {
+            document.getElementById('nav-menu')?.classList.remove('open');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

@@ -181,6 +181,15 @@ const community = [
     ],
   },
 ];
+
+const funFacts = [
+  '🇬🇷 Greek at heart',
+  '🏔️ Munich-based',
+  '🥾 Hiked to Everest Base Camp',
+  '☕ Coffee-powered',
+  '🗣️ Speaks EL · EN · DE',
+  '🤖 Built this site with Copilot',
+];
 // ---------------------------------------------------------------------------
 ---
 
@@ -218,31 +227,34 @@ const community = [
       <div class="about-grid">
         <div>
           <p>
-            I'm a Partner Solution Architect on Microsoft's EMEA team, based in Munich. Originally
-            from Thessaloniki, Greece, I moved to Munich when I was 23 and have called it home ever
-            since. I
-            work with partners to build reliable, performant, secure, and cost-efficient AI
-            applications in the cloud, help them shape their cloud services offerings, and drive GitHub
-            adoption across the ecosystem.
+            <span class="about-lead">👋 Hi!</span> I'm a Partner Solution Architect on Microsoft's
+            EMEA team, based in Munich. Originally from Thessaloniki, Greece, I moved to Munich when
+            I was 23 and have called it home ever since. I work with partners to build reliable,
+            performant, secure, and cost-efficient AI applications in the cloud, help them shape
+            their cloud services offerings, and drive GitHub adoption across the ecosystem.
           </p>
           <p>
-            Before this, I spent three and a half years as a Data Analytics Cloud Solution Architect,
-            specializing in Microsoft Fabric, Azure Databricks, Synapse, Data Factory, and Power BI. I
-            love delivering technical workshops and sharing what I learn.
+            <span class="about-lead">📊 Before that</span> I spent three and a half years as a Data
+            Analytics Cloud Solution Architect, specializing in Microsoft Fabric, Azure Databricks,
+            Synapse, Data Factory, and Power BI. I love delivering technical workshops and sharing
+            what I learn.
           </p>
           <p>
-            On top of my day-to-day work, I deliver executive briefings — sessions where I meet
-            with customer leadership teams to cut through the noise on AI and translate the
-            technology into clear business value. Alongside this, I serve as Communications Lead of
-            the Mosaic Inclusion Network in Germany, championing multicultural inclusion and
-            representation across our community at Microsoft.
+            <span class="about-lead">🎤 Beyond the day job</span> I deliver executive briefings —
+            sessions where I meet with customer leadership teams to cut through the noise on AI and
+            translate the technology into clear business value. Alongside this, I serve as
+            Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural
+            inclusion and representation across our community at Microsoft.
           </p>
+          <ul class="fun-facts" aria-label="Quick facts about me">
+            {funFacts.map((f) => <li>{f}</li>)}
+          </ul>
         </div>
         <div class="about-facts">
-          <div class="fact"><span>Role</span><span>{profile.role}</span></div>
-          <div class="fact"><span>Location</span><span>{profile.location}</span></div>
-          <div class="fact"><span>Focus</span><span>AI Apps · Azure · GitHub</span></div>
-          <div class="fact"><span>Languages</span><span>EL · EN · DE</span></div>
+          <div class="fact"><span>💼 Role</span><span>{profile.role}</span></div>
+          <div class="fact"><span>📍 Location</span><span>{profile.location}</span></div>
+          <div class="fact"><span>🎯 Focus</span><span>AI Apps · Azure · GitHub</span></div>
+          <div class="fact"><span>🗣️ Languages</span><span>EL · EN · DE</span></div>
         </div>
       </div>
     </div>

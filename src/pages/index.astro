@@ -90,6 +90,7 @@ const education = [
     org: 'Aristotle University of Thessaloniki (AUTH)',
     period: '2016 – 2022',
     summary: 'Telecommunications Engineering. Thesis: Interference in novel leadless pacemaker implants.',
+    thesisLink: 'https://ikee.lib.auth.gr/record/338089/?ln=el',
   },
 ];
 
@@ -300,6 +301,11 @@ const community = [
             <h3>{e.degree} · <span style="color:var(--accent)">{e.org}</span></h3>
             <p class="timeline-meta">{e.period}</p>
             <p>{e.summary}</p>
+            {e.thesisLink && (
+              <p style="margin:0.5rem 0 0">
+                <a href={e.thesisLink} target="_blank" rel="noopener">Read my thesis →</a>
+              </p>
+            )}
           </div>
         ))}
       </div>

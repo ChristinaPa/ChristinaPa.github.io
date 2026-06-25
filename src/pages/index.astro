@@ -186,7 +186,12 @@ const community = [
     icon: '💻',
     title: 'ReDI School volunteering',
     description:
-      'Volunteering with ReDI School of Digital Integration: I taught a semester of AI Fundamentals to newcomers as part of a group of teachers, and returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching.',
+      'Volunteering with ReDI School of Digital Integration, helping newcomers build digital skills:',
+    bullets: [
+      'Taught a full semester of AI Fundamentals to newcomers as part of a teaching team',
+      'Returned twice as a train-the-trainer mentor',
+      'Coached teachers on how to use AI in their own teaching',
+    ],
     link: 'https://www.redi-school.org/',
     linkLabel: 'Visit ReDI School',
   },
@@ -194,7 +199,12 @@ const community = [
     icon: '🎓',
     title: 'Student leadership & volunteering',
     description:
-      'From AIESEC and the Student Conference of Electrical and Computer Engineering (ECESCON) to my time as a Microsoft Learn Student Ambassador, I have always invested in mentoring others and growing diverse tech communities.',
+      'A long track record of mentoring others and growing diverse tech communities:',
+    bullets: [
+      'Active in AIESEC',
+      'Contributed to the Student Conference of Electrical and Computer Engineering (ECESCON)',
+      'Served as a Microsoft Learn Student Ambassador',
+    ],
     links: [
       { url: 'https://aiesec.org/', label: 'AIESEC' },
       { url: 'https://mvp.microsoft.com/studentambassadors', label: 'Microsoft Learn Student Ambassadors' },
@@ -420,6 +430,11 @@ const funFacts = [
             <h3>{c.title}</h3>
             <p style="margin:0">{c.description}</p>
             {c.note && <p style="margin:0.75rem 0 0">{c.note}</p>}
+            {c.bullets && (
+              <ul style="margin:0.75rem 0 0; padding-left:1.1rem">
+                {c.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            )}
             {c.link && (
               <p style="margin:0.75rem 0 0">
                 <a href={c.link} target="_blank" rel="noopener">{c.linkLabel} →</a>

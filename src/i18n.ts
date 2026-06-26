@@ -295,12 +295,12 @@ export const ui: Record<Locale, Translation> = {
           linkLabels: ['LinkedIn post about volunteer teachers'],
         },
         {
-          title: 'Student leadership & volunteering',
+          title: 'Student leadership',
           description: 'Mentoring others and growing diverse tech communities through student leadership:',
           bullets: [
             'Volunteered with <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a>, supporting international student exchange and leadership',
             'Contributed to the Student Conference of Electrical and Computer Engineering (ECESCON) as marketing manager',
-            'Served as a <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>',
+            'Served as a <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>, <a href="https://github.com/ChristinaPa/Microsoft-Learn-Student-Ambassadors-Events" target="_blank" rel="noopener">producing community event content</a>',
           ],
         },
       ],
@@ -526,12 +526,12 @@ export const ui: Record<Locale, Translation> = {
           linkLabels: ['Δημοσίευση στο LinkedIn για τους εθελοντές εκπαιδευτές'],
         },
         {
-          title: 'Φοιτητική ηγεσία & εθελοντισμός',
+          title: 'Φοιτητική ηγεσία',
           description: 'Καθοδηγώ άλλους και αναπτύσσω ποικιλόμορφες τεχνολογικές κοινότητες μέσα από φοιτητική ηγεσία:',
           bullets: [
             'Εθελοντισμός με την <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a>, υποστηρίζοντας τη διεθνή ανταλλαγή φοιτητών και την ηγεσία',
             'Συνεισέφερα στο Student Conference of Electrical and Computer Engineering (ECESCON) ως marketing manager',
-            'Διετέλεσα <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>',
+            'Διετέλεσα <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>, <a href="https://github.com/ChristinaPa/Microsoft-Learn-Student-Ambassadors-Events" target="_blank" rel="noopener">δημιουργώντας περιεχόμενο για εκδηλώσεις της κοινότητας</a>',
           ],
         },
       ],
@@ -761,12 +761,12 @@ export const ui: Record<Locale, Translation> = {
           linkLabels: ['LinkedIn-Beitrag über die ehrenamtlichen Lehrkräfte'],
         },
         {
-          title: 'Engagement & Ehrenamt im Studium',
+          title: 'Engagement im Studium',
           description: 'Ich begleite andere und baue vielfältige Tech-Communities durch studentisches Engagement auf:',
           bullets: [
             'Ehrenamtlich bei <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a> aktiv, zur Förderung von internationalem Studierendenaustausch und Leadership',
             'Bei der Student Conference of Electrical and Computer Engineering (ECESCON) als Marketing Manager mitgewirkt',
-            'Als <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a> tätig gewesen',
+            'Als <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a> tätig gewesen und <a href="https://github.com/ChristinaPa/Microsoft-Learn-Student-Ambassadors-Events" target="_blank" rel="noopener">Inhalte für Community-Events erstellt</a>',
           ],
         },
       ],

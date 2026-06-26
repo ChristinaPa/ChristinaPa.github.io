@@ -114,6 +114,16 @@ const nav = [
       </nav>
     </header>
 
+    {t.i18nNotice && (
+      <div class="translation-notice" role="note">
+        <div class="container">
+          <span aria-hidden="true">🌐</span>
+          <span>{t.i18nNotice.text}</span>
+          <a href={base}>{t.i18nNotice.linkLabel} →</a>
+        </div>
+      </div>
+    )}
+
     <main id="main">
       <slot />
     </main>

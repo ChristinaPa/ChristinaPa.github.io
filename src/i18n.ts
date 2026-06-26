@@ -126,6 +126,7 @@ export interface Translation {
     copyEmail: string;
     copied: string;
   };
+  i18nNotice?: { text: string; linkLabel: string };
 }
 
 export const ui: Record<Locale, Translation> = {
@@ -597,6 +598,10 @@ export const ui: Record<Locale, Translation> = {
       copyEmail: 'Αντιγραφή email',
       copied: 'Αντιγράφηκε!',
     },
+    i18nNotice: {
+      text: 'Αυτή η σελίδα μεταφράστηκε αυτόματα — ορισμένες διατυπώσεις μπορεί να μην αποδίδονται απόλυτα σωστά.',
+      linkLabel: 'Δες την αγγλική έκδοση',
+    },
   },
   de: {
     htmlLang: 'de',
@@ -831,6 +836,10 @@ export const ui: Record<Locale, Translation> = {
       emailMe: 'E-Mail schreiben',
       copyEmail: 'E-Mail kopieren',
       copied: 'Kopiert!',
+    },
+    i18nNotice: {
+      text: 'Diese Seite wurde automatisch übersetzt — einige Formulierungen sind möglicherweise nicht ganz korrekt.',
+      linkLabel: 'Zur englischen Version',
     },
   },
 };

@@ -54,6 +54,10 @@ const nav = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      // Mark JS as available before paint so scroll-reveal hides elements without a flash.
+      document.documentElement.classList.add('js');
+    </script>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
     <meta name="theme-color" content="#2e7d52" />
@@ -135,6 +139,35 @@ const nav = [
     </footer>
 
     <button class="back-to-top" aria-label="Back to top" title="Back to top" hidden>↑</button>
+
+    <script is:inline>
+      // Scroll-reveal: fade/slide elements in as they enter the viewport.
+      (function () {
+        const selector = '.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item';
+        const els = Array.from(document.querySelectorAll(selector));
+        if (!els.length) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target;
+              const siblings = Array.from(el.parentElement ? el.parentElement.children : [el]);
+              const idx = Math.max(0, siblings.indexOf(el));
+              el.style.transitionDelay = Math.min(idx, 6) * 80 + 'ms';
+              el.classList.add('is-visible');
+              obs.unobserve(el);
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+        );
+        els.forEach((el) => observer.observe(el));
+      })();
+    </script>
 
     <script is:inline>
       // Theme toggle with persistence + system preference fallback

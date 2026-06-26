@@ -264,10 +264,12 @@ section {
   margin: 0;
 }
 .hero .gradient {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  background: linear-gradient(120deg, var(--accent), var(--accent-2), var(--accent));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: gradientShift 6s ease-in-out infinite;
 }
 .hero p.tagline {
   font-size: clamp(1.05rem, 2.5vw, 1.3rem);
@@ -280,6 +282,53 @@ section {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
+}
+
+/* Hero entrance animation (staggered) */
+.hero-inner > * {
+  animation: heroIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-inner > .avatar-wrap { animation-delay: 0.05s; }
+.hero-inner > .eyebrow { animation-delay: 0.15s; }
+.hero-inner > h1 { animation-delay: 0.25s; }
+.hero-inner > .tagline { animation-delay: 0.35s; }
+.hero-inner > .cta-row { animation-delay: 0.45s; }
+.hero-inner > .hero-stats { animation-delay: 0.55s; }
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* Hero "by the numbers" strip */
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin: 1.5rem 0 0;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.hero-stat-num {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-stat-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 .btn {
   display: inline-flex;
@@ -594,20 +643,32 @@ section {
   margin: 0.5rem 0 0;
   padding: 0;
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 0.6rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 .what-i-do-list li {
-  position: relative;
-  padding-left: 1.6rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  flex: 1 1 280px;
+  padding: 0.85rem 1.1rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  transition: var(--transition);
+}
+.what-i-do-list li:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 .what-i-do-list li::before {
   content: '✓';
-  position: absolute;
-  left: 0;
+  flex-shrink: 0;
   color: var(--accent);
   font-weight: 700;
 }
@@ -765,5 +826,22 @@ section {
   * {
     scroll-behavior: auto !important;
     transition: none !important;
+    animation: none !important;
   }
+  /* Ensure reveal elements are visible when motion is reduced */
+  html.js :is(.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Scroll-reveal: only active when JS is enabled (no flash, graceful fallback) */
+html.js :is(.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item) {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+html.js :is(.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item).is-visible {
+  opacity: 1;
+  transform: none;
 }

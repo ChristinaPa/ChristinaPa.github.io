@@ -90,6 +90,14 @@ const toolbox = [
   { name: 'SQL', icon: 'sql' },
 ];
 
+// Hero “by the numbers” strip. Values are derived from real content; labels are translated.
+const heroStats: { value?: number; display?: string; icon: string }[] = [
+  { value: certificationsAssociate.length + certificationsFundamentals.length, icon: '🏅' },
+  { value: 3, icon: '🗣️' },
+  { value: toolbox.length, icon: '🧰' },
+  { display: '∞', icon: '🏔️' },
+];
+
 // Icons are shared; titles/descriptions/bullets/notes come from t.interests.items.
 const interestIcons = ['🥾', '✈️', '🏃‍♀️', '🌱'];
 
@@ -148,6 +156,14 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
       <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
       <a class="btn btn-ghost" href="#focus">{t.hero.ctaSecondary}</a>
     </div>
+    <dl class="hero-stats">
+      {heroStats.map((s, i) => (
+        <div class="hero-stat" aria-label={`${s.display ?? s.value} ${t.hero.stats[i]}`}>
+          <dt class="hero-stat-num" data-count={s.value ?? ''}>{s.display ?? s.value}</dt>
+          <dd class="hero-stat-label"><span aria-hidden="true">{s.icon}</span> {t.hero.stats[i]}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
@@ -455,6 +471,28 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
       } catch {
         window.location.href = `mailto:${email}`;
       }
+    });
+  })();
+</script>
+
+<script is:inline>
+  // Animate the hero “by the numbers” counters from 0 to their target.
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nums = document.querySelectorAll('.hero-stat-num[data-count]');
+    nums.forEach((el) => {
+      const target = parseInt(el.getAttribute('data-count') || '', 10);
+      if (!Number.isFinite(target) || target <= 0 || reduce) return;
+      el.textContent = '0';
+      const duration = 1100;
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     });
   })();
 </script>

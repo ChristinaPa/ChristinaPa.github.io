@@ -10,7 +10,10 @@ const { lang } = Astro.props;
 const t = getTranslation(lang);
 const base = import.meta.env.BASE_URL;
 
-// --- Shared content (currently English across all locales) ------------------
+// --- Locale-invariant content -----------------------------------------------
+// Proper nouns, product names, role titles, technology tags, certification
+// names, and external links stay the same across locales. Translatable prose
+// lives in src/i18n.ts and is merged by index where needed.
 const profile = {
   name: 'Christina Pardali',
   role: 'Partner Solution Architect',
@@ -22,86 +25,29 @@ const profile = {
   location: 'Munich, Germany',
 };
 
-const topics = [
-  {
-    icon: '🤖',
-    title: 'Agentic AI architectures',
-    description:
-      'Helping partners design and deploy AI applications that are reliable, secure, and production-ready — from first prototype to scale, with a focus on Microsoft Foundry.',
-    tags: ['Microsoft Foundry', 'Azure AI', 'GenAI'],
-  },
-  {
-    icon: '🐙',
-    title: 'GitHub-driven SDLC modernization',
-    description:
-      'Driving GitHub-driven SDLC modernization across the partner ecosystem — modern developer workflows, automation, and GitHub Copilot. And yes, this website was built with GitHub Copilot.',
-    tags: ['GitHub', 'Copilot', 'DevOps'],
-  },
+// Icons + tags are shared; titles/descriptions come from t.focus.topics.
+const topicMeta = [
+  { icon: '🤖', tags: ['Microsoft Foundry', 'Azure AI', 'GenAI'] },
+  { icon: '🐙', tags: ['GitHub', 'Copilot', 'DevOps'] },
 ];
 
-const whatIDo = [
-  'Delivering technical trainings and hands-on workshops to upskill partner teams',
-  'Running architecture reviews and design sessions to validate solutions before they scale',
-  'Building proofs of concept that de-risk new ideas and prove value quickly',
-  'Collaborating closely with account teams to align technical strategy with business goals',
-  'Guiding partners on reliable, secure, and cost-efficient cloud and AI solutions',
-  'Driving GitHub and developer-productivity adoption across the partner ecosystem',
+// Role + org are shared; period/summary come from t.experience.*
+const experienceMicrosoftMeta = [
+  { role: 'Partner Solution Architect — EMEA', org: 'Microsoft' },
+  { role: 'Data Analytics Cloud Solution Architect — EMEA', org: 'Microsoft' },
+  { role: 'Sales Executive Intern — Business Applications', org: 'Microsoft' },
+  { role: 'Microsoft Learn Student Ambassador', org: 'Microsoft' },
 ];
 
-const experienceMicrosoft = [
-  {
-    role: 'Partner Solution Architect — EMEA',
-    org: 'Microsoft',
-    period: 'Feb 2026 – Present · Munich',
-    summary:
-      'Work with EMEA partners on Agentic AI architectures and GitHub-driven SDLC modernization, providing technical guidance on building reliable, performant, secure, and cost-efficient cloud solutions and shaping their cloud services offerings. Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation.',
-  },
-  {
-    role: 'Data Analytics Cloud Solution Architect — EMEA',
-    org: 'Microsoft',
-    period: 'Sep 2022 – Feb 2026 · Munich',
-    summary:
-      'Specialized in Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks, and Power BI. Ran proof of concepts and architecture reviews for enterprise customers, delivered technical workshops, drove feature requests with Product Engineering, and coordinated AI and lakehouse migration projects end to end. Delivered Microsoft Fabric sessions at the Microsoft Executive Center EMEA to 50+ senior decision makers.',
-  },
-  {
-    role: 'Sales Executive Intern — Business Applications',
-    org: 'Microsoft',
-    period: 'Oct 2021 – Mar 2022 · Munich',
-    summary:
-      'Ran market research and a Dynamics 365 Remote Assist lead-generation campaign for Automotive and Manufacturing accounts using LinkedIn Sales Navigator and Dynamics 365 Sales, built outreach templates, analyzed campaign results, and supported presales demos.',
-  },
-  {
-    role: 'Microsoft Learn Student Ambassador',
-    org: 'Microsoft',
-    period: 'Jan 2020 – Mar 2022 · Thessaloniki',
-    summary:
-      'Authored a Microsoft Learn path on Azure Health Bot and spoke at virtual events on Azure Machine Learning, Power Platform, Cloud Security, and Health Bot — including the Global AI Student Conference 2021 — while building local tech communities.',
-  },
+const experienceEngineeringMeta = [
+  { role: 'Junior Radio Frequency Engineer', org: 'Further Enterprise Solutions (FES)' },
+  { role: 'Network Infrastructure Intern', org: 'Aristotle University IT Center' },
 ];
 
-const experienceEngineering = [
+// Org + thesis link are shared; degree/period/summary/label come from t.education.
+const educationMeta = [
   {
-    role: 'Junior Radio Frequency Engineer',
-    org: 'Further Enterprise Solutions (FES)',
-    period: 'Jun 2021 – Sep 2021 · Thessaloniki',
-    summary:
-      'Supported radio frequency engineering, including E911 call testing for small cells and creating KPI reports for network efficiency.',
-  },
-  {
-    role: 'Network Infrastructure Intern',
-    org: 'Aristotle University IT Center',
-    period: 'Jan 2020 – Jun 2020 · Thessaloniki',
-    summary:
-      'Gained hands-on experience in network management, traffic accounting, wireless networks, routing, and switching using LibreNMS, Icinga, SecureCRT, and Cisco Prime Infrastructure.',
-  },
-];
-
-const education = [
-  {
-    degree: 'M.Eng. Electrical & Computer Engineering — Telecommunications',
     org: 'Aristotle University of Thessaloniki (AUTH)',
-    period: '2016 – 2022',
-    summary: 'Telecommunications Engineering. Thesis: Interference in novel leadless pacemaker implants.',
     thesisLink: 'https://ikee.lib.auth.gr/record/338089/?ln=el',
   },
 ];
@@ -124,103 +70,34 @@ const certificationsFundamentals = [
   'GitHub Actions',
 ];
 
-const skillGroups = [
-  {
-    name: 'Data & Analytics',
-    items: ['Microsoft Fabric', 'Azure Synapse Analytics', 'Azure Data Factory', 'Azure Databricks', 'Power BI', 'Spark'],
-  },
-  {
-    name: 'Programming',
-    items: ['Python', 'SQL'],
-  },
-  {
-    name: 'AI',
-    items: ['Azure AI', 'Microsoft Foundry', 'Azure Machine Learning', 'Azure Health Bot'],
-  },
-  {
-    name: 'Cloud & Architecture',
-    items: ['Azure', 'Solution Architecture', 'Proof of Concepts', 'Architecture Reviews'],
-  },
-  {
-    name: 'GitHub & DevOps',
-    items: ['GitHub', 'GitHub Copilot'],
-  },
+// Skill items are shared (product names); group names come from t.skills.groupNames.
+const skillGroupItems = [
+  ['Microsoft Fabric', 'Azure Synapse Analytics', 'Azure Data Factory', 'Azure Databricks', 'Power BI', 'Spark'],
+  ['Python', 'SQL'],
+  ['Azure AI', 'Microsoft Foundry', 'Azure Machine Learning', 'Azure Health Bot'],
+  ['Azure', 'Solution Architecture', 'Proof of Concepts', 'Architecture Reviews'],
+  ['GitHub', 'GitHub Copilot'],
 ];
 
-const interests = [
-  {
-    icon: '🥾',
-    title: 'Hiking adventures',
-    description: 'Hiking is my favourite way to switch off. Two trails I\'ll never forget:',
-    bullets: [
-      'Trekking to Everest Base Camp in Nepal',
-      'Standing on top of the Zugspitze, Germany\'s highest peak',
-    ],
-    note: 'Closer to home, most weekends you\'ll find me somewhere in the Bavarian Alps.',
-  },
-  {
-    icon: '✈️',
-    title: 'Travel & exploring',
-    description:
-      'I love exploring cultures outside of Europe and usually combine my trips with a good hike. So far I\'ve visited 37 of the world\'s 193 countries. And yes — at 28, I still text my mum the moment I land somewhere new.',
-  },
-  {
-    icon: '🏃‍♀️',
-    title: 'Running',
-    description:
-      'Mostly I just try to run 10 km without dying.',
-  },
-  {
-    icon: '🌱',
-    title: 'Mentoring',
-    description:
-      'I love mentoring students and early-in-career professionals — helping people break into tech, navigate their first cloud or AI roles, and grow the confidence to back themselves.',
-  },
-];
+// Icons are shared; titles/descriptions/bullets/notes come from t.interests.items.
+const interestIcons = ['🥾', '✈️', '🏃‍♀️', '🌱'];
 
-const community = [
-  {
-    icon: '🌍',
-    title: 'Mosaic Inclusion Network',
-    description:
-      'Communications Lead of the Mosaic Inclusion Network at Microsoft Germany, championing multicultural inclusion and representation across our community at Microsoft.',
-    note:
-      'At Microsoft, an inclusion network is an employee-led community that brings people together around a shared background or experience to foster belonging, drive cultural awareness, and support one another across the company.',
-  },
+// Icons + external link URLs are shared; text comes from t.community.items.
+const communityMeta: { icon: string; links?: string[] }[] = [
+  { icon: '🌍' },
   {
     icon: '💻',
-    title: 'ReDI School volunteering',
-    description:
-      'Volunteering with <a href="https://www.redi-school.org/" target="_blank" rel="noopener">ReDI School of Digital Integration</a>, helping newcomers build digital skills:',
-    bullets: [
-      'Taught a full semester of AI Fundamentals to newcomers as part of a teaching team',
-      'Returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching',
-    ],
-    note: 'If this resonates with you, please consider volunteering or donating to ReDI School — every bit helps newcomers build the digital skills to thrive.',
     links: [
-      { label: 'LinkedIn post about volunteer teachers', url: 'https://www.linkedin.com/posts/redi-school-of-digital-integration_preparing-our-volunteer-teachers-for-spring-activity-7442232610602381312-7NYA' },
+      'https://www.linkedin.com/posts/redi-school-of-digital-integration_preparing-our-volunteer-teachers-for-spring-activity-7442232610602381312-7NYA',
     ],
   },
-  {
-    icon: '🎓',
-    title: 'Student leadership & volunteering',
-    description:
-      'Mentoring others and growing diverse tech communities through student leadership:',
-    bullets: [
-      'Volunteered with <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a>, supporting international student exchange and leadership',
-      'Contributed to the Student Conference of Electrical and Computer Engineering (ECESCON) as marketing manager',
-      'Served as a <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>',
-    ],
-  },
+  { icon: '🎓' },
 ];
 
-const resourceIntro =
-  'These are some of my personal go-to links to help you on your journey. With today\u2019s AI tools you can surface plenty of resources on your own — but these are the ones I\u2019ve seen genuinely help the partners and customers I work with. Consider them my personal recommendations.';
-const resourceGroups: { icon: string; name: string; note?: string; links: { label: string; url: string }[] }[] = [
+// Icons + link URLs/labels are shared (technical English); group names/notes/intro come from t.resources.
+const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[] }[] = [
   {
     icon: '🤖',
-    name: 'Agentic AI architectures',
-    note: 'My focus here is on Microsoft Azure as the core technology.',
     links: [
       { label: 'microsoft/agentic-factory-hack — predictive maintenance with Microsoft Foundry, multi-agent workflows & MCP', url: 'https://github.com/microsoft/agentic-factory-hack' },
       { label: 'Microsoft — AI Solution Accelerators', url: 'https://accelerators.ms/' },
@@ -229,7 +106,6 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
   },
   {
     icon: '🐙',
-    name: 'GitHub-driven SDLC modernization',
     links: [
       { label: 'Awesome GitHub Copilot', url: 'https://awesome-copilot.github.com/' },
       { label: 'agentskills/agentskills — spec & docs for Agent Skills', url: 'https://github.com/agentskills/agentskills' },
@@ -274,7 +150,7 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
         <p set:html={t.about.para1Html}></p>
         <p set:html={t.about.para2Html}></p>
         <p set:html={t.about.para3Html}></p>
-        <ul class="fun-facts" aria-label="Quick facts about me">
+        <ul class="fun-facts">
           {t.about.funFacts.map((f) => <li>{f}</li>)}
         </ul>
       </div>
@@ -292,15 +168,15 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Focus areas with partners -->
 <section id="focus">
   <div class="container">
-    <p class="eyebrow">What I do</p>
-    <h2 class="section-title">Focus areas</h2>
-    <p class="section-lead">Areas where I help Microsoft partners design, build, and ship.</p>
+    <p class="eyebrow">{t.focus.eyebrow}</p>
+    <h2 class="section-title">{t.focus.title}</h2>
+    <p class="section-lead">{t.focus.lead}</p>
     <div class="grid grid-3">
-      {topics.map((tp) => (
+      {topicMeta.map((tp, i) => (
         <article class="card">
           <div class="interest-icon" aria-hidden="true">{tp.icon}</div>
-          <h3>{tp.title}</h3>
-          <p>{tp.description}</p>
+          <h3>{t.focus.topics[i].title}</h3>
+          <p>{t.focus.topics[i].description}</p>
           <div class="tag-row">
             {tp.tags.map((tag) => <span class="tag">{tag}</span>)}
           </div>
@@ -309,12 +185,10 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
     </div>
 
     <div class="what-i-do">
-      <h3 class="experience-group-title">In a typical week</h3>
-      <p class="section-lead">
-        My work has a particular focus on the German market.
-      </p>
+      <h3 class="experience-group-title">{t.focus.weekTitle}</h3>
+      <p class="section-lead">{t.focus.weekLead}</p>
       <ul class="what-i-do-list">
-        {whatIDo.map((item) => <li>{item}</li>)}
+        {t.focus.whatIDo.map((item) => <li>{item}</li>)}
       </ul>
     </div>
   </div>
@@ -323,28 +197,28 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Experience -->
 <section id="experience">
   <div class="container">
-    <p class="eyebrow">Career</p>
-    <h2 class="section-title">Work experience</h2>
-    <p class="section-lead">Where I've worked and what I focused on.</p>
+    <p class="eyebrow">{t.experience.eyebrow}</p>
+    <h2 class="section-title">{t.experience.title}</h2>
+    <p class="section-lead">{t.experience.lead}</p>
 
-    <h3 class="experience-group-title">My Microsoft journey</h3>
+    <h3 class="experience-group-title">{t.experience.microsoftTitle}</h3>
     <div class="timeline">
-      {experienceMicrosoft.map((e) => (
+      {experienceMicrosoftMeta.map((e, i) => (
         <div class="timeline-item">
           <h3>{e.role}</h3>
-          <p class="timeline-meta">{e.period}</p>
-          <p>{e.summary}</p>
+          <p class="timeline-meta">{t.experience.microsoft[i].period}</p>
+          <p>{t.experience.microsoft[i].summary}</p>
         </div>
       ))}
     </div>
 
-    <h3 class="experience-group-title">When I thought I wanted to work as an engineer</h3>
+    <h3 class="experience-group-title">{t.experience.engineeringTitle}</h3>
     <div class="timeline">
-      {experienceEngineering.map((e) => (
+      {experienceEngineeringMeta.map((e, i) => (
         <div class="timeline-item">
           <h3>{e.role} · <span style="color:var(--accent)">{e.org}</span></h3>
-          <p class="timeline-meta">{e.period}</p>
-          <p>{e.summary}</p>
+          <p class="timeline-meta">{t.experience.engineering[i].period}</p>
+          <p>{t.experience.engineering[i].summary}</p>
         </div>
       ))}
     </div>
@@ -354,17 +228,17 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Education -->
 <section id="education">
   <div class="container">
-    <p class="eyebrow">Education</p>
-    <h2 class="section-title">Education</h2>
+    <p class="eyebrow">{t.education.eyebrow}</p>
+    <h2 class="section-title">{t.education.title}</h2>
     <div class="timeline">
-      {education.map((e) => (
+      {educationMeta.map((e, i) => (
         <div class="timeline-item">
-          <h3>{e.degree} · <span style="color:var(--accent)">{e.org}</span></h3>
-          <p class="timeline-meta">{e.period}</p>
-          <p>{e.summary}</p>
+          <h3>{t.education.items[i].degree} · <span style="color:var(--accent)">{e.org}</span></h3>
+          <p class="timeline-meta">{t.education.items[i].period}</p>
+          <p>{t.education.items[i].summary}</p>
           {e.thesisLink && (
             <p style="margin:0.5rem 0 0">
-              <a href={e.thesisLink} target="_blank" rel="noopener">Read my thesis →</a>
+              <a href={e.thesisLink} target="_blank" rel="noopener">{t.education.items[i].thesisLabel}</a>
             </p>
           )}
         </div>
@@ -376,19 +250,17 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Certifications -->
 <section id="certifications">
   <div class="container">
-    <p class="eyebrow">Credentials</p>
-    <h2 class="section-title">Certifications</h2>
-    <p class="section-lead">
-      Microsoft and Databricks certifications.
-    </p>
+    <p class="eyebrow">{t.certifications.eyebrow}</p>
+    <h2 class="section-title">{t.certifications.title}</h2>
+    <p class="section-lead">{t.certifications.lead}</p>
     <div class="cert-group">
-      <h3>Associate level</h3>
+      <h3>{t.certifications.associateTitle}</h3>
       <ul class="skill-list">
         {certificationsAssociate.map((c) => <li>{c}</li>)}
       </ul>
     </div>
     <div class="cert-group">
-      <h3>Fundamentals</h3>
+      <h3>{t.certifications.fundamentalsTitle}</h3>
       <ul class="skill-list">
         {certificationsFundamentals.map((c) => <li>{c}</li>)}
       </ul>
@@ -399,14 +271,14 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Skills -->
 <section id="skills">
   <div class="container">
-    <p class="eyebrow">Toolbox</p>
-    <h2 class="section-title">Skills</h2>
-    <p class="section-lead">Technologies and practices I work with regularly.</p>
-    {skillGroups.map((g) => (
+    <p class="eyebrow">{t.skills.eyebrow}</p>
+    <h2 class="section-title">{t.skills.title}</h2>
+    <p class="section-lead">{t.skills.lead}</p>
+    {skillGroupItems.map((items, i) => (
       <div class="skill-group">
-        <h3>{g.name}</h3>
+        <h3>{t.skills.groupNames[i]}</h3>
         <ul class="skill-list">
-          {g.items.map((s) => <li>{s}</li>)}
+          {items.map((s) => <li>{s}</li>)}
         </ul>
       </div>
     ))}
@@ -416,28 +288,25 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Community & Inclusion -->
 <section id="community">
   <div class="container">
-    <p class="eyebrow">What I care about</p>
-    <h2 class="section-title">Community &amp; inclusion</h2>
-    <p class="section-lead">
-      Beyond architecture, I'm passionate about multicultural communities and inclusion — bringing
-      people together and making sure everyone has a seat at the table.
-    </p>
+    <p class="eyebrow">{t.community.eyebrow}</p>
+    <h2 class="section-title" set:html={t.community.title}></h2>
+    <p class="section-lead">{t.community.lead}</p>
     <div class="grid grid-3">
-      {community.map((c) => (
+      {communityMeta.map((c, i) => (
         <article class="card">
           <div class="interest-icon" aria-hidden="true">{c.icon}</div>
-          <h3>{c.title}</h3>
-          <p style="margin:0" set:html={c.description}></p>
-          {c.bullets && (
+          <h3>{t.community.items[i].title}</h3>
+          <p style="margin:0" set:html={t.community.items[i].description}></p>
+          {t.community.items[i].bullets && (
             <ul style="margin:0.75rem 0 0; padding-left:1.1rem">
-              {c.bullets.map((b) => <li set:html={b}></li>)}
+              {t.community.items[i].bullets!.map((b) => <li set:html={b}></li>)}
             </ul>
           )}
-          {c.note && <p style="margin:0.75rem 0 0">{c.note}</p>}
+          {t.community.items[i].note && <p style="margin:0.75rem 0 0">{t.community.items[i].note}</p>}
           {c.links && (
             <p style="margin:0.75rem 0 0" class="community-links">
-              {c.links.map((l) => (
-                <a href={l.url} target="_blank" rel="noopener">{l.label} →</a>
+              {c.links.map((url, li) => (
+                <a href={url} target="_blank" rel="noopener">{t.community.items[i].linkLabels?.[li]} →</a>
               ))}
             </p>
           )}
@@ -451,9 +320,9 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 {articles.length > 0 && (
   <section id="blog-preview">
     <div class="container">
-      <p class="eyebrow">Writing</p>
-      <h2 class="section-title">From the blog</h2>
-      <p class="section-lead">Articles I've published on cloud, AI, and architecture.</p>
+      <p class="eyebrow">{t.blog.eyebrow}</p>
+      <h2 class="section-title">{t.blog.title}</h2>
+      <p class="section-lead">{t.blog.lead}</p>
       <ul class="post-list">
         {articles.slice(0, 3).map((a) => (
           <li class="post-item card">
@@ -464,7 +333,7 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
         ))}
       </ul>
       <p style="margin-top:1.5rem">
-        <a class="btn btn-ghost" href={`${base}blog`}>All articles →</a>
+        <a class="btn btn-ghost" href={`${base}blog`}>{t.blog.allArticles}</a>
       </p>
     </div>
   </section>
@@ -473,15 +342,15 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Resources -->
 <section id="resources">
   <div class="container">
-    <p class="eyebrow">Toolbox</p>
-    <h2 class="section-title">Resources</h2>
-    <p class="section-lead">{resourceIntro}</p>
+    <p class="eyebrow">{t.resources.eyebrow}</p>
+    <h2 class="section-title">{t.resources.title}</h2>
+    <p class="section-lead">{t.resources.intro}</p>
     <div class="grid grid-2">
-      {resourceGroups.map((g) => (
+      {resourceGroupsMeta.map((g, i) => (
         <article class="card">
           <div class="interest-icon" aria-hidden="true">{g.icon}</div>
-          <h3>{g.name}</h3>
-          {g.note && <p style="margin:0 0 0.5rem" class="muted">{g.note}</p>}
+          <h3>{t.resources.groupNames[i]}</h3>
+          {t.resources.notes[i] && <p style="margin:0 0 0.5rem" class="muted">{t.resources.notes[i]}</p>}
           {g.links.length > 0 ? (
             <ul class="resource-list">
               {g.links.map((l) => (
@@ -491,7 +360,7 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
               ))}
             </ul>
           ) : (
-            <p style="margin:0" class="muted">Links coming soon.</p>
+            <p style="margin:0" class="muted">{t.resources.linksComingSoon}</p>
           )}
         </article>
       ))}
@@ -502,23 +371,21 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Interests -->
 <section id="interests">
   <div class="container">
-    <p class="eyebrow">Beyond work</p>
-    <h2 class="section-title">Personal interests</h2>
-    <p class="section-lead">
-      When I'm not designing data and AI solutions, I'm usually outdoors — most often on a mountain trail.
-    </p>
+    <p class="eyebrow">{t.interests.eyebrow}</p>
+    <h2 class="section-title">{t.interests.title}</h2>
+    <p class="section-lead">{t.interests.lead}</p>
     <div class="grid grid-3">
-      {interests.map((i) => (
+      {interestIcons.map((icon, i) => (
         <article class="card">
-          <div class="interest-icon" aria-hidden="true">{i.icon}</div>
-          <h3>{i.title}</h3>
-          <p style="margin:0">{i.description}</p>
-          {i.bullets && (
+          <div class="interest-icon" aria-hidden="true">{icon}</div>
+          <h3>{t.interests.items[i].title}</h3>
+          <p style="margin:0">{t.interests.items[i].description}</p>
+          {t.interests.items[i].bullets && (
             <ul class="interest-bullets">
-              {i.bullets.map((b) => <li>{b}</li>)}
+              {t.interests.items[i].bullets!.map((b) => <li>{b}</li>)}
             </ul>
           )}
-          {i.note && <p style="margin:0">{i.note}</p>}
+          {t.interests.items[i].note && <p style="margin:0">{t.interests.items[i].note}</p>}
         </article>
       ))}
     </div>
@@ -528,14 +395,12 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 <!-- Contact -->
 <section id="contact" class="contact">
   <div class="container">
-    <p class="eyebrow">Contact</p>
-    <h2 class="section-title">Let's connect</h2>
-    <p class="section-lead" style="margin-inline:auto">
-      Interested in collaborating, or just want to say hi? I'd love to hear from you.
-    </p>
+    <p class="eyebrow">{t.contact.eyebrow}</p>
+    <h2 class="section-title">{t.contact.title}</h2>
+    <p class="section-lead" style="margin-inline:auto">{t.contact.lead}</p>
     <div class="contact-links">
-      <a class="btn btn-primary" href={`mailto:${profile.email}`}>Email me</a>
-      <button class="btn btn-ghost copy-email" data-email={profile.email} type="button">Copy email</button>
+      <a class="btn btn-primary" href={`mailto:${profile.email}`}>{t.contact.emailMe}</a>
+      <button class="btn btn-ghost copy-email" data-email={profile.email} data-copied={t.contact.copied} type="button">{t.contact.copyEmail}</button>
       <a class="btn btn-ghost" href={profile.linkedin} rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost" href={profile.github} rel="noopener">GitHub</a>
     </div>
@@ -543,7 +408,7 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
 </section>
 
 <script is:inline>
-  // Copy-email button with brief "Copied!" feedback
+  // Copy-email button with brief, localized "Copied!" feedback
   (function () {
     document.addEventListener('click', async (e) => {
       const target = e.target;
@@ -552,10 +417,11 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
       if (!btn) return;
       const email = btn.getAttribute('data-email');
       if (!email) return;
+      const copiedLabel = btn.getAttribute('data-copied') || 'Copied!';
       try {
         await navigator.clipboard.writeText(email);
         const original = btn.textContent;
-        btn.textContent = 'Copied!';
+        btn.textContent = copiedLabel;
         setTimeout(() => { btn.textContent = original; }, 1800);
       } catch {
         window.location.href = `mailto:${email}`;

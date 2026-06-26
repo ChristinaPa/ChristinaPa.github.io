@@ -6,6 +6,11 @@
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Segoe UI, system-ui, sans-serif" font-size="30" font-weight="700" fill="#fff">CP</text>
+  <g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round">
+    <circle cx="32" cy="32" r="15"/>
+    <ellipse cx="32" cy="32" rx="6.5" ry="15"/>
+    <line x1="17" y1="32" x2="47" y2="32"/>
+    <line x1="20" y1="24" x2="44" y2="24"/>
+    <line x1="20" y1="40" x2="44" y2="40"/>
+  </g>
 </svg>

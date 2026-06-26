@@ -190,14 +190,13 @@ const community = [
     icon: '💻',
     title: 'ReDI School volunteering',
     description:
-      'Volunteering with ReDI School of Digital Integration, helping newcomers build digital skills:',
+      'Volunteering with <a href="https://www.redi-school.org/" target="_blank" rel="noopener">ReDI School of Digital Integration</a>, helping newcomers build digital skills:',
     bullets: [
       'Taught a full semester of AI Fundamentals to newcomers as part of a teaching team',
       'Returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching',
     ],
     note: 'If this resonates with you, please consider volunteering or donating to ReDI School — every bit helps newcomers build the digital skills to thrive.',
     links: [
-      { label: 'Visit ReDI School', url: 'https://www.redi-school.org/' },
       { label: 'LinkedIn post about volunteer teachers', url: 'https://www.linkedin.com/posts/redi-school-of-digital-integration_preparing-our-volunteer-teachers-for-spring-activity-7442232610602381312-7NYA' },
     ],
   },
@@ -207,13 +206,9 @@ const community = [
     description:
       'Mentoring others and growing diverse tech communities through student leadership:',
     bullets: [
-      'Volunteered with AIESEC, supporting international student exchange and leadership',
+      'Volunteered with <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a>, supporting international student exchange and leadership',
       'Contributed to the Student Conference of Electrical and Computer Engineering (ECESCON) as marketing manager',
-      'Served as a Microsoft Learn Student Ambassador',
-    ],
-    links: [
-      { url: 'https://aiesec.org/', label: 'AIESEC' },
-      { url: 'https://mvp.microsoft.com/studentambassadors', label: 'Microsoft Learn Student Ambassadors' },
+      'Served as a <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>',
     ],
   },
 ];
@@ -437,10 +432,10 @@ const funFacts = [
           <article class="card">
             <div class="interest-icon" aria-hidden="true">{c.icon}</div>
             <h3>{c.title}</h3>
-            <p style="margin:0">{c.description}</p>
+            <p style="margin:0" set:html={c.description}></p>
             {c.bullets && (
               <ul style="margin:0.75rem 0 0; padding-left:1.1rem">
-                {c.bullets.map((b) => <li>{b}</li>)}
+                {c.bullets.map((b) => <li set:html={b}></li>)}
               </ul>
             )}
             {c.note && <p style="margin:0.75rem 0 0">{c.note}</p>}

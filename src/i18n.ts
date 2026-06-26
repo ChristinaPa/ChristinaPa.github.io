@@ -308,7 +308,7 @@ export const ui: Record<Locale, Translation> = {
     blog: {
       eyebrow: 'Writing',
       title: 'From the blog',
-      lead: "Articles I've published on cloud, AI, and architecture.",
+      lead: "Articles I've published on AI and Cloud Architecture.",
       note:
         'My writing is scattered across a few different platforms — LinkedIn, the Microsoft community, and more — so I gather it all here in one place to make it easier to find.',
       allArticles: 'All articles →',
@@ -544,7 +544,7 @@ export const ui: Record<Locale, Translation> = {
     blog: {
       eyebrow: 'Αρθρογραφία',
       title: 'Από το blog',
-      lead: 'Άρθρα που έχω δημοσιεύσει για cloud, AI και αρχιτεκτονική.',
+      lead: 'Άρθρα που έχω δημοσιεύσει για AI και Cloud Architecture.',
       note:
         'Τα άρθρα μου είναι διάσπαρτα σε διάφορες πλατφόρμες — LinkedIn, την κοινότητα της Microsoft και άλλες — γι’ αυτό τα συγκεντρώνω όλα εδώ σε ένα μέρος, για να βρίσκονται πιο εύκολα.',
       allArticles: 'Όλα τα άρθρα →',
@@ -784,7 +784,7 @@ export const ui: Record<Locale, Translation> = {
     blog: {
       eyebrow: 'Publikationen',
       title: 'Aus dem Blog',
-      lead: 'Artikel, die ich zu Cloud, KI und Architektur veröffentlicht habe.',
+      lead: 'Artikel, die ich zu KI und Cloud Architecture veröffentlicht habe.',
       note:
         'Meine Beiträge sind über verschiedene Plattformen verstreut — LinkedIn, die Microsoft-Community und mehr —, deshalb sammle ich sie hier an einem Ort, damit sie leichter zu finden sind.',
       allArticles: 'Alle Artikel →',

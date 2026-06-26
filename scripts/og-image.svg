@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#111a2e"/>
+      <stop offset="1" stop-color="#1b2540"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7aa2ff"/>
+      <stop offset="1" stop-color="#b692ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="120" r="240" fill="#7aa2ff" opacity="0.10"/>
+  <circle cx="160" cy="560" r="200" fill="#b692ff" opacity="0.10"/>
+  <rect x="80" y="250" width="70" height="6" rx="3" fill="url(#accent)"/>
+  <text x="80" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#9fb3d1" letter-spacing="2">PARTNER SOLUTION ARCHITECT · MICROSOFT EMEA</text>
+  <text x="78" y="335" font-family="Segoe UI, Arial, sans-serif" font-size="92" font-weight="700" fill="#ffffff">Christina Pardali</text>
+  <text x="80" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#c6d3ea">Agentic AI architectures · GitHub-driven SDLC</text>
+  <text x="80" y="475" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#c6d3ea">modernization · Cloud solutions</text>
+  <text x="80" y="565" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#7e8ca8">christinapa.github.io</text>
+</svg>

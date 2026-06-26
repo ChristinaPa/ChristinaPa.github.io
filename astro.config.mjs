@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 //
 // IMPORTANT (GitHub Pages):
@@ -11,4 +13,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://ChristinaPa.github.io',
   base: '/',
+  integrations: [sitemap()],
 });

@@ -90,6 +90,7 @@ export interface Translation {
     eyebrow: string;
     title: string;
     lead: string;
+    toolboxTitle: string;
     groupNames: string[];
   };
   community: {
@@ -272,6 +273,7 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Toolbox',
       title: 'Skills',
       lead: 'Technologies and practices I work with regularly.',
+      toolboxTitle: 'My toolbox',
       groupNames: ['Data & Analytics', 'Programming', 'AI', 'Cloud & Architecture', 'GitHub & DevOps'],
     },
     community: {
@@ -509,6 +511,7 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Εργαλειοθήκη',
       title: 'Δεξιότητες',
       lead: 'Τεχνολογίες και πρακτικές με τις οποίες δουλεύω τακτικά.',
+      toolboxTitle: 'Η εργαλειοθήκη μου',
       groupNames: ['Data & Analytics', 'Προγραμματισμός', 'AI', 'Cloud & Αρχιτεκτονική', 'GitHub & DevOps'],
     },
     community: {
@@ -750,6 +753,7 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Toolbox',
       title: 'Fähigkeiten',
       lead: 'Technologien und Methoden, mit denen ich regelmäßig arbeite.',
+      toolboxTitle: 'Mein Werkzeugkasten',
       groupNames: ['Data & Analytics', 'Programmierung', 'AI', 'Cloud & Architektur', 'GitHub & DevOps'],
     },
     community: {

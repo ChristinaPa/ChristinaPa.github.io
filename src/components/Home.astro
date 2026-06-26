@@ -79,6 +79,17 @@ const skillGroupItems = [
   ['GitHub', 'GitHub Copilot'],
 ];
 
+// Toolbox icons — brand names stay in English across locales. SVGs live in public/icons/.
+const toolbox = [
+  { name: 'VS Code', icon: 'vscode' },
+  { name: 'GitHub', icon: 'github' },
+  { name: 'GitHub Copilot', icon: 'copilot' },
+  { name: 'Azure', icon: 'azure' },
+  { name: 'Azure Databricks', icon: 'databricks' },
+  { name: 'Python', icon: 'python' },
+  { name: 'SQL', icon: 'sql' },
+];
+
 // Icons are shared; titles/descriptions/bullets/notes come from t.interests.items.
 const interestIcons = ['🥾', '✈️', '🏃‍♀️', '🌱'];
 
@@ -274,6 +285,23 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
     <p class="eyebrow">{t.skills.eyebrow}</p>
     <h2 class="section-title">{t.skills.title}</h2>
     <p class="section-lead">{t.skills.lead}</p>
+    <div class="toolbox">
+      <h3 class="toolbox-title">{t.skills.toolboxTitle}</h3>
+      <ul class="toolbox-list">
+        {toolbox.map((tool) => (
+          <li class="toolbox-item">
+            <span
+              class="tool-icon"
+              role="img"
+              aria-label={tool.name}
+              title={tool.name}
+              style={`--icon: url(${base}icons/${tool.icon}.svg)`}
+            ></span>
+            <span class="tool-name">{tool.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
     {skillGroupItems.map((items, i) => (
       <div class="skill-group">
         <h3>{t.skills.groupNames[i]}</h3>

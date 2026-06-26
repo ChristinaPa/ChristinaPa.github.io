@@ -571,9 +571,32 @@ const resourceGroups: { icon: string; name: string; note?: string; links: { labe
       </p>
       <div class="contact-links">
         <a class="btn btn-primary" href={`mailto:${profile.email}`}>Email me</a>
+        <button class="btn btn-ghost copy-email" data-email={profile.email} type="button">Copy email</button>
         <a class="btn btn-ghost" href={profile.linkedin} rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href={profile.github} rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    // Copy-email button with brief "Copied!" feedback
+    (function () {
+      document.addEventListener('click', async (e) => {
+        const target = e.target;
+        if (!(target instanceof Element)) return;
+        const btn = target.closest('.copy-email');
+        if (!btn) return;
+        const email = btn.getAttribute('data-email');
+        if (!email) return;
+        try {
+          await navigator.clipboard.writeText(email);
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = original; }, 1800);
+        } catch {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    })();
+  </script>
 </BaseLayout>

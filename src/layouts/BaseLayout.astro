@@ -44,6 +44,8 @@ const nav = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+    <meta name="theme-color" content="#2e7d52" />
     <link rel="canonical" href={canonical} />
     {googleSiteVerification && (
       <meta name="google-site-verification" content={googleSiteVerification} />
@@ -92,6 +94,8 @@ const nav = [
       </div>
     </footer>
 
+    <button class="back-to-top" aria-label="Back to top" title="Back to top" hidden>↑</button>
+
     <script is:inline>
       // Theme toggle with persistence + system preference fallback
       (function () {
@@ -118,6 +122,53 @@ const nav = [
             document.getElementById('nav-menu')?.classList.remove('open');
           }
         });
+      })();
+    </script>
+
+    <script is:inline>
+      // Back-to-top button: show after scrolling, smooth-scroll to top
+      (function () {
+        const btn = document.querySelector('.back-to-top');
+        if (!btn) return;
+        const onScroll = () => {
+          if (window.scrollY > 600) btn.removeAttribute('hidden');
+          else btn.setAttribute('hidden', '');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      })();
+    </script>
+
+    <script is:inline>
+      // Scrollspy: highlight the nav link of the section currently in view
+      (function () {
+        const links = Array.from(document.querySelectorAll('.nav-menu a[href*="#"]'));
+        if (!links.length) return;
+        const map = new Map();
+        for (const link of links) {
+          const hash = link.getAttribute('href')?.split('#')[1];
+          if (!hash) continue;
+          const section = document.getElementById(hash);
+          if (section) map.set(section, link);
+        }
+        if (!map.size) return;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              const link = map.get(entry.target);
+              if (!link) continue;
+              if (entry.isIntersecting) {
+                links.forEach((l) => l.classList.remove('active'));
+                link.classList.add('active');
+              }
+            }
+          },
+          { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+        );
+        map.forEach((_, section) => observer.observe(section));
       })();
     </script>
   </body>

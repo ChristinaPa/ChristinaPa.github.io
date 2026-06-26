@@ -125,6 +125,34 @@ h1, h2, h3 {
   color: var(--text);
   text-decoration: none;
 }
+.nav-menu a.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 50;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+.back-to-top:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}
+.back-to-top[hidden] {
+  display: none;
+}
 .theme-toggle,
 .nav-toggle {
   background: var(--bg-subtle);

@@ -155,7 +155,7 @@ export const ui: Record<Locale, Translation> = {
         'Welcome to my little corner of the internet! I\u2019m a Greek who fell in love with Munich, a Partner Solution Architect at Microsoft by day, and a mountain-chaser the rest of the time. Grab a coffee, scroll around, and get to know me a bit.',
       ctaPrimary: 'Get in touch',
       ctaSecondary: 'What I do',
-      stats: ['Certifications', 'Languages', 'Tools in my kit', 'Trails to chase'],
+      stats: ['Languages', 'Countries called home', 'Years in tech', 'Trails to chase'],
     },
     about: {
       eyebrow: 'About',
@@ -393,7 +393,7 @@ export const ui: Record<Locale, Translation> = {
         'Καλώς ήρθες στη μικρή μου γωνιά του διαδικτύου! Είμαι μια Ελληνίδα που ερωτεύτηκε το Μόναχο — Partner Solution Architect στη Microsoft τη μέρα και κυνηγός βουνών τον υπόλοιπο καιρό. Πάρε έναν καφέ, ρίξε μια ματιά και γνώρισέ με λίγο.',
       ctaPrimary: 'Επικοινώνησε μαζί μου',
       ctaSecondary: 'Τι κάνω',
-      stats: ['Πιστοποιήσεις', 'Γλώσσες', 'Εργαλεία στη θήκη μου', 'Μονοπάτια να εξερευνήσω'],
+      stats: ['Γλώσσες', 'Χώρες που λέω σπίτι μου', 'Χρόνια στην τεχνολογία', 'Μονοπάτια να εξερευνήσω'],
     },
     about: {
       eyebrow: 'Σχετικά',
@@ -636,7 +636,7 @@ export const ui: Record<Locale, Translation> = {
         'Willkommen in meiner kleinen Ecke des Internets! Ich bin eine Griechin, die sich in München verliebt hat — tagsüber Partner Solution Architect bei Microsoft und in der übrigen Zeit in den Bergen unterwegs. Schnapp dir einen Kaffee, schau dich um und lerne mich ein bisschen kennen.',
       ctaPrimary: 'Kontakt aufnehmen',
       ctaSecondary: 'Was ich mache',
-      stats: ['Zertifizierungen', 'Sprachen', 'Werkzeuge im Koffer', 'Pfade zum Erkunden'],
+      stats: ['Sprachen', 'Länder, die ich Zuhause nenne', 'Jahre in der Tech-Branche', 'Pfade zum Erkunden'],
     },
     about: {
       eyebrow: 'Über mich',

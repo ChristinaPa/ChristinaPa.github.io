@@ -92,9 +92,9 @@ const toolbox = [
 
 // Hero “by the numbers” strip. Values are derived from real content; labels are translated.
 const heroStats: { value?: number; display?: string; icon: string }[] = [
-  { value: certificationsAssociate.length + certificationsFundamentals.length, icon: '🏅' },
   { value: 3, icon: '🗣️' },
-  { value: toolbox.length, icon: '🧰' },
+  { value: 2, icon: '🌍' },
+  { value: 4.5, icon: '📅' },
   { display: '∞', icon: '🏔️' },
 ];
 
@@ -481,15 +481,17 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const nums = document.querySelectorAll('.hero-stat-num[data-count]');
     nums.forEach((el) => {
-      const target = parseInt(el.getAttribute('data-count') || '', 10);
+      const raw = el.getAttribute('data-count') || '';
+      const target = parseFloat(raw);
       if (!Number.isFinite(target) || target <= 0 || reduce) return;
-      el.textContent = '0';
+      const decimals = raw.includes('.') ? 1 : 0;
+      el.textContent = (0).toFixed(decimals);
       const duration = 1100;
       const start = performance.now();
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(target * eased));
+        el.textContent = (target * eased).toFixed(decimals);
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);

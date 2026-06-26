@@ -8,6 +8,13 @@ export interface Article {
 // Add more published articles here as you write them.
 export const articles: Article[] = [
   {
+    title: 'This website\u2019s source code on GitHub',
+    description:
+      'The complete source code for this site, built with Astro and deployed via GitHub Pages. Feel free to explore how it\u2019s put together.',
+    source: 'GitHub',
+    url: 'https://github.com/ChristinaPa/ChristinaPa.github.io',
+  },
+  {
     title: 'Make your life as Azure Solution Architect easier with Draw.io MCP Server and VS Code',
     description:
       'How the Draw.io MCP Server, together with VS Code, streamlines architecture diagramming for Azure Solution Architects.',

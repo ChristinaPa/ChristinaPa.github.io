@@ -47,7 +47,6 @@ export interface Translation {
     para1Html: string;
     para2Html: string;
     para3Html: string;
-    funFacts: string[];
     factRole: string;
     factLocation: string;
     factFocus: string;
@@ -166,14 +165,6 @@ export const ui: Record<Locale, Translation> = {
         '<span class="about-lead">📊 Before that</span> I spent three and a half years as a Data Analytics Cloud Solution Architect, specializing in Microsoft Fabric, Azure Databricks, Synapse, Data Factory, and Power BI. I love delivering technical workshops and sharing what I learn.',
       para3Html:
         '<span class="about-lead">🎤 Beyond the day job</span> I deliver executive briefings — sessions where I meet with customer leadership teams to cut through the noise on AI and translate the technology into clear business value. Alongside this, I serve as Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation across our community at Microsoft.',
-      funFacts: [
-        '🇬🇷 Greek at heart',
-        '🏔️ Munich-based',
-        '🥾 Hiked to Everest Base Camp',
-        '☕ Coffee-powered',
-        '🗣️ Speaks Greek, English & German',
-        '🤖 Built this site with Copilot',
-      ],
       factRole: 'Role',
       factLocation: 'Location',
       factFocus: 'Focus',
@@ -404,14 +395,6 @@ export const ui: Record<Locale, Translation> = {
         '<span class="about-lead">📊 Πριν από αυτό</span> πέρασα τρεισήμισι χρόνια ως Data Analytics Cloud Solution Architect, με εξειδίκευση στο Microsoft Fabric, το Azure Databricks, το Synapse, το Data Factory και το Power BI. Λατρεύω να παραδίδω τεχνικά workshops και να μοιράζομαι όσα μαθαίνω.',
       para3Html:
         '<span class="about-lead">🎤 Πέρα από τη δουλειά</span> πραγματοποιώ executive briefings — συναντήσεις με τις ηγετικές ομάδες πελατών, όπου ξεκαθαρίζουμε τον θόρυβο γύρω από το AI και μεταφράζουμε την τεχνολογία σε ξεκάθαρη επιχειρηματική αξία. Παράλληλα, είμαι Communications Lead του Mosaic Inclusion Network στη Γερμανία, προωθώντας την πολυπολιτισμική συμπερίληψη και εκπροσώπηση στην κοινότητά μας στη Microsoft.',
-      funFacts: [
-        '🇬🇷 Ελληνίδα στην καρδιά',
-        '🏔️ Με βάση το Μόναχο',
-        '🥾 Πεζοπορία στο Everest Base Camp',
-        '☕ Με καύσιμο τον καφέ',
-        '🗣️ Μιλάει Ελληνικά, Αγγλικά & Γερμανικά',
-        '🤖 Έφτιαξα αυτό το site με Copilot',
-      ],
       factRole: 'Ρόλος',
       factLocation: 'Τοποθεσία',
       factFocus: 'Εστίαση',
@@ -647,14 +630,6 @@ export const ui: Record<Locale, Translation> = {
         '<span class="about-lead">📊 Davor</span> war ich dreieinhalb Jahre als Data Analytics Cloud Solution Architect tätig, spezialisiert auf Microsoft Fabric, Azure Databricks, Synapse, Data Factory und Power BI. Ich liebe es, technische Workshops zu halten und mein Wissen zu teilen.',
       para3Html:
         '<span class="about-lead">🎤 Neben dem Tagesgeschäft</span> halte ich Executive Briefings — Sitzungen mit den Führungsteams von Kunden, in denen wir den Lärm rund um KI durchdringen und die Technologie in klaren geschäftlichen Mehrwert übersetzen. Daneben bin ich Communications Lead des Mosaic Inclusion Network in Deutschland und setze mich für multikulturelle Inklusion und Repräsentation in unserer Community bei Microsoft ein.',
-      funFacts: [
-        '🇬🇷 Griechin im Herzen',
-        '🏔️ In München zu Hause',
-        '🥾 Zum Everest Base Camp gewandert',
-        '☕ Kaffeebetrieben',
-        '🗣️ Spricht Griechisch, Englisch & Deutsch',
-        '🤖 Diese Seite mit Copilot gebaut',
-      ],
       factRole: 'Rolle',
       factLocation: 'Standort',
       factFocus: 'Schwerpunkt',

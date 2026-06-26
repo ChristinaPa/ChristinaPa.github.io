@@ -177,9 +177,6 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
         <p set:html={t.about.para1Html}></p>
         <p set:html={t.about.para2Html}></p>
         <p set:html={t.about.para3Html}></p>
-        <ul class="fun-facts">
-          {t.about.funFacts.map((f) => <li>{f}</li>)}
-        </ul>
       </div>
       <div class="about-facts">
         <div class="fact"><span>💼 {t.about.factRole}</span><span>{profile.role}</span></div>

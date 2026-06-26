@@ -351,6 +351,11 @@ export const ui: Record<Locale, Translation> = {
           description:
             'I love mentoring students and early-in-career professionals — helping people break into tech, navigate their first cloud or AI roles, and grow the confidence to back themselves.',
         },
+        {
+          title: 'People management & leadership',
+          description:
+            'Leadership is a topic I genuinely love. I read books and keep upskilling on it, and somewhere down the line I’d love to move into people management and help a team grow.',
+        },
       ],
     },
     contact: {
@@ -581,6 +586,11 @@ export const ui: Record<Locale, Translation> = {
           title: 'Mentoring',
           description:
             'Λατρεύω να κάνω mentoring σε φοιτητές και επαγγελματίες στα πρώτα τους βήματα — βοηθώντας ανθρώπους να μπουν στον χώρο της τεχνολογίας, να βρουν τον δρόμο τους στους πρώτους ρόλους cloud ή AI και να αποκτήσουν την αυτοπεποίθηση να στηρίζονται στον εαυτό τους.',
+        },
+        {
+          title: 'Διαχείριση ανθρώπων & ηγεσία',
+          description:
+            'Η ηγεσία είναι ένα θέμα που πραγματικά λατρεύω. Διαβάζω βιβλία και συνεχώς εκπαιδεύομαι πάνω σ’ αυτό, και κάποια στιγμή θα ήθελα να περάσω στη διαχείριση ανθρώπων και να βοηθήσω μια ομάδα να αναπτυχθεί.',
         },
       ],
     },
@@ -816,6 +826,11 @@ export const ui: Record<Locale, Translation> = {
           title: 'Mentoring',
           description:
             'Ich liebe es, Studierende und Berufseinsteiger zu mentoren — Menschen dabei zu helfen, in die Tech-Welt einzusteigen, ihre ersten Cloud- oder KI-Rollen zu meistern und das Selbstvertrauen zu entwickeln, an sich zu glauben.',
+        },
+        {
+          title: 'Führung & Mitarbeiterführung',
+          description:
+            'Führung ist ein Thema, das ich wirklich liebe. Ich lese Bücher darüber und bilde mich kontinuierlich weiter, und irgendwann möchte ich gerne in die Mitarbeiterführung gehen und einem Team beim Wachsen helfen.',
         },
       ],
     },

@@ -216,12 +216,12 @@ export const ui: Record<Locale, Translation> = {
         {
           period: 'Feb 2026 – Present · Munich',
           summary:
-            'Work with EMEA partners on Agentic AI architectures and GitHub-driven SDLC modernization, providing technical guidance on building reliable, performant, secure, and cost-efficient cloud solutions and shaping their cloud services offerings. Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation.',
+            'Work directly with EMEA partners on Agentic AI architectures and GitHub-driven SDLC modernization, providing technical guidance on building reliable, performant, secure, and cost-efficient cloud solutions and helping them shape their own cloud services offerings. Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation.',
         },
         {
           period: 'Sep 2022 – Feb 2026 · Munich',
           summary:
-            'Specialized in Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks, and Power BI. Ran proof of concepts and architecture reviews for enterprise customers, delivered technical workshops, drove feature requests with Product Engineering, and coordinated AI and lakehouse migration projects end to end. Delivered Microsoft Fabric sessions at the Microsoft Executive Center EMEA to 50+ senior decision makers.',
+            'Worked directly with enterprise customers, specializing in Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks, and Power BI. Ran proof of concepts and architecture reviews, delivered technical workshops, drove feature requests with Product Engineering, and coordinated AI and lakehouse migration projects end to end. Delivered Microsoft Fabric sessions at the Microsoft Executive Center EMEA to 50+ senior decision makers.',
         },
         {
           period: 'Oct 2021 – Mar 2022 · Munich',
@@ -450,12 +450,12 @@ export const ui: Record<Locale, Translation> = {
         {
           period: 'Φεβ. 2026 – σήμερα · Μόναχο',
           summary:
-            'Συνεργάζομαι με partners σε όλη την EMEA πάνω σε αρχιτεκτονικές Agentic AI και στον εκσυγχρονισμό του SDLC με γνώμονα το GitHub, παρέχοντας τεχνική καθοδήγηση για τη δημιουργία αξιόπιστων, αποδοτικών, ασφαλών και οικονομικά αποδοτικών λύσεων cloud, και βοηθώντας τους να διαμορφώσουν τις προσφορές cloud υπηρεσιών τους. Communications Lead του Mosaic Inclusion Network στη Γερμανία, προωθώντας την πολυπολιτισμική συμπερίληψη και εκπροσώπηση.',
+            'Συνεργάζομαι απευθείας με partners σε όλη την EMEA πάνω σε αρχιτεκτονικές Agentic AI και στον εκσυγχρονισμό του SDLC με γνώμονα το GitHub, παρέχοντας τεχνική καθοδήγηση για τη δημιουργία αξιόπιστων, αποδοτικών, ασφαλών και οικονομικά αποδοτικών λύσεων cloud, και βοηθώντας τους partners να διαμορφώσουν τις δικές τους προσφορές cloud υπηρεσιών. Communications Lead του Mosaic Inclusion Network στη Γερμανία, προωθώντας την πολυπολιτισμική συμπερίληψη και εκπροσώπηση.',
         },
         {
           period: 'Σεπ. 2022 – Φεβ. 2026 · Μόναχο',
           summary:
-            'Εξειδικεύτηκα στο Microsoft Fabric, το Azure Data Factory, το Azure Synapse Analytics, το Azure Databricks και το Power BI. Υλοποίησα proof of concepts και architecture reviews για enterprise πελάτες, παρέδωσα τεχνικά workshops, προώθησα feature requests μαζί με το Product Engineering και συντόνισα έργα μετάβασης σε AI και lakehouse από την αρχή έως το τέλος. Παρέδωσα sessions για το Microsoft Fabric στο Microsoft Executive Center EMEA σε 50+ ανώτερα στελέχη που λαμβάνουν αποφάσεις.',
+            'Συνεργάστηκα απευθείας με enterprise πελάτες, με εξειδίκευση στο Microsoft Fabric, το Azure Data Factory, το Azure Synapse Analytics, το Azure Databricks και το Power BI. Υλοποίησα proof of concepts και architecture reviews, παρέδωσα τεχνικά workshops, προώθησα feature requests μαζί με το Product Engineering και συντόνισα έργα μετάβασης σε AI και lakehouse από την αρχή έως το τέλος. Παρέδωσα sessions για το Microsoft Fabric στο Microsoft Executive Center EMEA σε 50+ ανώτερα στελέχη που λαμβάνουν αποφάσεις.',
         },
         {
           period: 'Οκτ. 2021 – Μάρ. 2022 · Μόναχο',
@@ -685,12 +685,12 @@ export const ui: Record<Locale, Translation> = {
         {
           period: 'Feb. 2026 – heute · München',
           summary:
-            'Ich arbeite mit Partnern in der gesamten EMEA-Region an Agentic-AI-Architekturen und GitHub-getriebener SDLC-Modernisierung, biete technische Beratung zum Aufbau zuverlässiger, performanter, sicherer und kosteneffizienter Cloud-Lösungen und unterstütze sie bei der Gestaltung ihrer Cloud-Service-Angebote. Communications Lead des Mosaic Inclusion Network in Deutschland, das sich für multikulturelle Inklusion und Repräsentation einsetzt.',
+            'Ich arbeite direkt mit Partnern in der gesamten EMEA-Region an Agentic-AI-Architekturen und GitHub-getriebener SDLC-Modernisierung, biete technische Beratung zum Aufbau zuverlässiger, performanter, sicherer und kosteneffizienter Cloud-Lösungen und unterstütze die Partner bei der Gestaltung ihrer eigenen Cloud-Service-Angebote. Communications Lead des Mosaic Inclusion Network in Deutschland, das sich für multikulturelle Inklusion und Repräsentation einsetzt.',
         },
         {
           period: 'Sep. 2022 – Feb. 2026 · München',
           summary:
-            'Spezialisiert auf Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks und Power BI. Ich habe Proofs of Concept und Architecture Reviews für Enterprise-Kunden durchgeführt, technische Workshops gehalten, Feature Requests gemeinsam mit dem Product Engineering vorangetrieben und KI- und Lakehouse-Migrationsprojekte end-to-end koordiniert. Außerdem habe ich im Microsoft Executive Center EMEA Microsoft-Fabric-Sessions für über 50 Entscheidungsträger gehalten.',
+            'Ich arbeitete direkt mit Enterprise-Kunden, spezialisiert auf Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks und Power BI. Ich habe Proofs of Concept und Architecture Reviews durchgeführt, technische Workshops gehalten, Feature Requests gemeinsam mit dem Product Engineering vorangetrieben und KI- und Lakehouse-Migrationsprojekte end-to-end koordiniert. Außerdem habe ich im Microsoft Executive Center EMEA Microsoft-Fabric-Sessions für über 50 Entscheidungsträger gehalten.',
         },
         {
           period: 'Okt. 2021 – März 2022 · München',

@@ -225,11 +225,12 @@ const funFacts = [
 // Curated resource links, grouped to mirror my focus areas.
 // Add links to each group as { label, url } — focus is on Microsoft Azure.
 const resourceIntro =
-  'These are some of my personal go-to links to help you on your journey. The focus is, of course, on Microsoft Azure as the core technology.';
-const resourceGroups: { icon: string; name: string; links: { label: string; url: string }[] }[] = [
+  'These are some of my personal go-to links to help you on your journey. With today\u2019s AI tools you can surface plenty of resources on your own — but these are the ones I\u2019ve seen genuinely help the partners and customers I work with. Consider them my personal recommendations.';
+const resourceGroups: { icon: string; name: string; note?: string; links: { label: string; url: string }[] }[] = [
   {
     icon: '🤖',
     name: 'Agentic AI architectures',
+    note: 'My focus here is on Microsoft Azure as the core technology.',
     links: [],
   },
   {
@@ -508,6 +509,7 @@ const resourceGroups: { icon: string; name: string; links: { label: string; url:
           <article class="card">
             <div class="interest-icon" aria-hidden="true">{g.icon}</div>
             <h3>{g.name}</h3>
+            {g.note && <p style="margin:0 0 0.5rem" class="muted">{g.note}</p>}
             {g.links.length > 0 ? (
               <ul class="resource-list">
                 {g.links.map((l) => (

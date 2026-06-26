@@ -221,6 +221,23 @@ const funFacts = [
   '🗣️ Speaks Greek, English & German',
   '🤖 Built this site with Copilot',
 ];
+
+// Curated resource links, grouped to mirror my focus areas.
+// Add links to each group as { label, url } — focus is on Microsoft Azure.
+const resourceIntro =
+  'These are some of my personal go-to links to help you on your journey. The focus is, of course, on Microsoft Azure as the core technology.';
+const resourceGroups: { icon: string; name: string; links: { label: string; url: string }[] }[] = [
+  {
+    icon: '🤖',
+    name: 'Agentic AI architectures',
+    links: [],
+  },
+  {
+    icon: '🐙',
+    name: 'GitHub-driven SDLC modernization',
+    links: [],
+  },
+];
 // ---------------------------------------------------------------------------
 ---
 
@@ -479,6 +496,34 @@ const funFacts = [
       </div>
     </section>
   )}
+
+  <!-- Resources -->
+  <section id="resources">
+    <div class="container">
+      <p class="eyebrow">Toolbox</p>
+      <h2 class="section-title">Resources</h2>
+      <p class="section-lead">{resourceIntro}</p>
+      <div class="grid grid-2">
+        {resourceGroups.map((g) => (
+          <article class="card">
+            <div class="interest-icon" aria-hidden="true">{g.icon}</div>
+            <h3>{g.name}</h3>
+            {g.links.length > 0 ? (
+              <ul class="resource-list">
+                {g.links.map((l) => (
+                  <li>
+                    <a href={l.url} target="_blank" rel="noopener">{l.label} →</a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p style="margin:0" class="muted">Links coming soon.</p>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Interests -->
   <section id="interests">

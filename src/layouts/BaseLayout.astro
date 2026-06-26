@@ -5,6 +5,10 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonical = site + Astro.url.pathname;
 const ogImage = `${site}${base}og-image.png`;
 
+// Paste the content value from Google Search Console's "HTML tag" method here
+// (e.g. 'AbC123...'), then redeploy and click Verify in Search Console.
+const googleSiteVerification = '';
+
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -28,6 +32,7 @@ const nav = [
   { href: `${base}#skills`, label: 'Skills' },
   { href: `${base}#community`, label: 'Community' },
   { href: `${base}blog`, label: 'Blog' },
+  { href: `${base}#resources`, label: 'Resources' },
   { href: `${base}#interests`, label: 'Interests' },
   { href: `${base}#contact`, label: 'Contact' },
 ];
@@ -40,6 +45,9 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="canonical" href={canonical} />
+    {googleSiteVerification && (
+      <meta name="google-site-verification" content={googleSiteVerification} />
+    )}
     <title>{title}</title>
     <meta name="description" content={description ?? 'Personal site of Christina Pardali, Partner Solution Architect at Microsoft EMEA.'} />
     <meta property="og:title" content={title} />

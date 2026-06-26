@@ -1,0 +1,565 @@
+---
+import { articles } from '../data/articles';
+import { getTranslation, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getTranslation(lang);
+const base = import.meta.env.BASE_URL;
+
+// --- Shared content (currently English across all locales) ------------------
+const profile = {
+  name: 'Christina Pardali',
+  role: 'Partner Solution Architect',
+  email: 'xristinapar8@gmail.com',
+  phone: '+491751293078',
+  linkedin: 'https://www.linkedin.com/in/christine-pardali/',
+  github: 'https://github.com/ChristinaPa',
+  credly: 'https://www.credly.com/',
+  location: 'Munich, Germany',
+};
+
+const topics = [
+  {
+    icon: '🤖',
+    title: 'Agentic AI architectures',
+    description:
+      'Helping partners design and deploy AI applications that are reliable, secure, and production-ready — from first prototype to scale, with a focus on Microsoft Foundry.',
+    tags: ['Microsoft Foundry', 'Azure AI', 'GenAI'],
+  },
+  {
+    icon: '🐙',
+    title: 'GitHub-driven SDLC modernization',
+    description:
+      'Driving GitHub-driven SDLC modernization across the partner ecosystem — modern developer workflows, automation, and GitHub Copilot. And yes, this website was built with GitHub Copilot.',
+    tags: ['GitHub', 'Copilot', 'DevOps'],
+  },
+];
+
+const whatIDo = [
+  'Delivering technical trainings and hands-on workshops to upskill partner teams',
+  'Running architecture reviews and design sessions to validate solutions before they scale',
+  'Building proofs of concept that de-risk new ideas and prove value quickly',
+  'Collaborating closely with account teams to align technical strategy with business goals',
+  'Guiding partners on reliable, secure, and cost-efficient cloud and AI solutions',
+  'Driving GitHub and developer-productivity adoption across the partner ecosystem',
+];
+
+const experienceMicrosoft = [
+  {
+    role: 'Partner Solution Architect — EMEA',
+    org: 'Microsoft',
+    period: 'Feb 2026 – Present · Munich',
+    summary:
+      'Work with EMEA partners on Agentic AI architectures and GitHub-driven SDLC modernization, providing technical guidance on building reliable, performant, secure, and cost-efficient cloud solutions and shaping their cloud services offerings. Communications Lead of the Mosaic Inclusion Network in Germany, championing multicultural inclusion and representation.',
+  },
+  {
+    role: 'Data Analytics Cloud Solution Architect — EMEA',
+    org: 'Microsoft',
+    period: 'Sep 2022 – Feb 2026 · Munich',
+    summary:
+      'Specialized in Microsoft Fabric, Azure Data Factory, Azure Synapse Analytics, Azure Databricks, and Power BI. Ran proof of concepts and architecture reviews for enterprise customers, delivered technical workshops, drove feature requests with Product Engineering, and coordinated AI and lakehouse migration projects end to end. Delivered Microsoft Fabric sessions at the Microsoft Executive Center EMEA to 50+ senior decision makers.',
+  },
+  {
+    role: 'Sales Executive Intern — Business Applications',
+    org: 'Microsoft',
+    period: 'Oct 2021 – Mar 2022 · Munich',
+    summary:
+      'Ran market research and a Dynamics 365 Remote Assist lead-generation campaign for Automotive and Manufacturing accounts using LinkedIn Sales Navigator and Dynamics 365 Sales, built outreach templates, analyzed campaign results, and supported presales demos.',
+  },
+  {
+    role: 'Microsoft Learn Student Ambassador',
+    org: 'Microsoft',
+    period: 'Jan 2020 – Mar 2022 · Thessaloniki',
+    summary:
+      'Authored a Microsoft Learn path on Azure Health Bot and spoke at virtual events on Azure Machine Learning, Power Platform, Cloud Security, and Health Bot — including the Global AI Student Conference 2021 — while building local tech communities.',
+  },
+];
+
+const experienceEngineering = [
+  {
+    role: 'Junior Radio Frequency Engineer',
+    org: 'Further Enterprise Solutions (FES)',
+    period: 'Jun 2021 – Sep 2021 · Thessaloniki',
+    summary:
+      'Supported radio frequency engineering, including E911 call testing for small cells and creating KPI reports for network efficiency.',
+  },
+  {
+    role: 'Network Infrastructure Intern',
+    org: 'Aristotle University IT Center',
+    period: 'Jan 2020 – Jun 2020 · Thessaloniki',
+    summary:
+      'Gained hands-on experience in network management, traffic accounting, wireless networks, routing, and switching using LibreNMS, Icinga, SecureCRT, and Cisco Prime Infrastructure.',
+  },
+];
+
+const education = [
+  {
+    degree: 'M.Eng. Electrical & Computer Engineering — Telecommunications',
+    org: 'Aristotle University of Thessaloniki (AUTH)',
+    period: '2016 – 2022',
+    summary: 'Telecommunications Engineering. Thesis: Interference in novel leadless pacemaker implants.',
+    thesisLink: 'https://ikee.lib.auth.gr/record/338089/?ln=el',
+  },
+];
+
+const certificationsAssociate = [
+  'Microsoft Fabric Analytics Engineer Associate',
+  'Microsoft Certified: Azure Data Engineer Associate',
+  'Microsoft Certified: Azure AI Engineer Associate',
+];
+
+const certificationsFundamentals = [
+  'Microsoft Certified: Azure Fundamentals',
+  'Microsoft Certified: Azure AI Fundamentals',
+  'Microsoft Certified: Azure Data Fundamentals',
+  'Microsoft Certified: Dynamics 365 Fundamentals (CRM)',
+  'Databricks Lakehouse Fundamentals',
+  'Databricks Generative AI Fundamentals',
+  'GitHub Foundations',
+  'GitHub Copilot',
+  'GitHub Actions',
+];
+
+const skillGroups = [
+  {
+    name: 'Data & Analytics',
+    items: ['Microsoft Fabric', 'Azure Synapse Analytics', 'Azure Data Factory', 'Azure Databricks', 'Power BI', 'Spark'],
+  },
+  {
+    name: 'Programming',
+    items: ['Python', 'SQL'],
+  },
+  {
+    name: 'AI',
+    items: ['Azure AI', 'Microsoft Foundry', 'Azure Machine Learning', 'Azure Health Bot'],
+  },
+  {
+    name: 'Cloud & Architecture',
+    items: ['Azure', 'Solution Architecture', 'Proof of Concepts', 'Architecture Reviews'],
+  },
+  {
+    name: 'GitHub & DevOps',
+    items: ['GitHub', 'GitHub Copilot'],
+  },
+];
+
+const interests = [
+  {
+    icon: '🥾',
+    title: 'Hiking adventures',
+    description: 'Hiking is my favourite way to switch off. Two trails I\'ll never forget:',
+    bullets: [
+      'Trekking to Everest Base Camp in Nepal',
+      'Standing on top of the Zugspitze, Germany\'s highest peak',
+    ],
+    note: 'Closer to home, most weekends you\'ll find me somewhere in the Bavarian Alps.',
+  },
+  {
+    icon: '✈️',
+    title: 'Travel & exploring',
+    description:
+      'I love exploring cultures outside of Europe and usually combine my trips with a good hike. So far I\'ve visited 37 of the world\'s 193 countries. And yes — at 28, I still text my mum the moment I land somewhere new.',
+  },
+  {
+    icon: '🏃‍♀️',
+    title: 'Running',
+    description:
+      'Mostly I just try to run 10 km without dying.',
+  },
+  {
+    icon: '🌱',
+    title: 'Mentoring',
+    description:
+      'I love mentoring students and early-in-career professionals — helping people break into tech, navigate their first cloud or AI roles, and grow the confidence to back themselves.',
+  },
+];
+
+const community = [
+  {
+    icon: '🌍',
+    title: 'Mosaic Inclusion Network',
+    description:
+      'Communications Lead of the Mosaic Inclusion Network at Microsoft Germany, championing multicultural inclusion and representation across our community at Microsoft.',
+    note:
+      'At Microsoft, an inclusion network is an employee-led community that brings people together around a shared background or experience to foster belonging, drive cultural awareness, and support one another across the company.',
+  },
+  {
+    icon: '💻',
+    title: 'ReDI School volunteering',
+    description:
+      'Volunteering with <a href="https://www.redi-school.org/" target="_blank" rel="noopener">ReDI School of Digital Integration</a>, helping newcomers build digital skills:',
+    bullets: [
+      'Taught a full semester of AI Fundamentals to newcomers as part of a teaching team',
+      'Returned twice as a train-the-trainer mentor, coaching teachers on how to use AI in their own teaching',
+    ],
+    note: 'If this resonates with you, please consider volunteering or donating to ReDI School — every bit helps newcomers build the digital skills to thrive.',
+    links: [
+      { label: 'LinkedIn post about volunteer teachers', url: 'https://www.linkedin.com/posts/redi-school-of-digital-integration_preparing-our-volunteer-teachers-for-spring-activity-7442232610602381312-7NYA' },
+    ],
+  },
+  {
+    icon: '🎓',
+    title: 'Student leadership & volunteering',
+    description:
+      'Mentoring others and growing diverse tech communities through student leadership:',
+    bullets: [
+      'Volunteered with <a href="https://aiesec.org/" target="_blank" rel="noopener">AIESEC</a>, supporting international student exchange and leadership',
+      'Contributed to the Student Conference of Electrical and Computer Engineering (ECESCON) as marketing manager',
+      'Served as a <a href="https://mvp.microsoft.com/studentambassadors" target="_blank" rel="noopener">Microsoft Learn Student Ambassador</a>',
+    ],
+  },
+];
+
+const resourceIntro =
+  'These are some of my personal go-to links to help you on your journey. With today\u2019s AI tools you can surface plenty of resources on your own — but these are the ones I\u2019ve seen genuinely help the partners and customers I work with. Consider them my personal recommendations.';
+const resourceGroups: { icon: string; name: string; note?: string; links: { label: string; url: string }[] }[] = [
+  {
+    icon: '🤖',
+    name: 'Agentic AI architectures',
+    note: 'My focus here is on Microsoft Azure as the core technology.',
+    links: [
+      { label: 'microsoft/agentic-factory-hack — predictive maintenance with Microsoft Foundry, multi-agent workflows & MCP', url: 'https://github.com/microsoft/agentic-factory-hack' },
+      { label: 'Microsoft — AI Solution Accelerators', url: 'https://accelerators.ms/' },
+      { label: 'Azure AI Landing Zones', url: 'https://azure.github.io/AI-Landing-Zones/' },
+    ],
+  },
+  {
+    icon: '🐙',
+    name: 'GitHub-driven SDLC modernization',
+    links: [
+      { label: 'Awesome GitHub Copilot', url: 'https://awesome-copilot.github.com/' },
+      { label: 'agentskills/agentskills — spec & docs for Agent Skills', url: 'https://github.com/agentskills/agentskills' },
+      { label: 'bradygaster/squad — AI agent teams for any project', url: 'https://github.com/bradygaster/squad' },
+    ],
+  },
+];
+---
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="avatar-wrap">
+      <img
+        class="avatar"
+        src={`${base}profile.jpg`}
+        alt={profile.name}
+        width="150"
+        height="150"
+        loading="eager"
+        onerror="this.style.display='none'"
+      />
+      <span class="avatar-initials" aria-hidden="true">CP</span>
+    </div>
+    <p class="eyebrow">{t.hero.role}</p>
+    <h1>{t.hero.greeting} <span class="gradient">{profile.name}</span></h1>
+    <p class="tagline">{t.hero.welcome}</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">{t.hero.ctaPrimary}</a>
+      <a class="btn btn-ghost" href="#focus">{t.hero.ctaSecondary}</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <p class="eyebrow">{t.about.eyebrow}</p>
+    <h2 class="section-title">{t.about.title}</h2>
+    <div class="about-grid">
+      <div>
+        <p set:html={t.about.para1Html}></p>
+        <p set:html={t.about.para2Html}></p>
+        <p set:html={t.about.para3Html}></p>
+        <ul class="fun-facts" aria-label="Quick facts about me">
+          {t.about.funFacts.map((f) => <li>{f}</li>)}
+        </ul>
+      </div>
+      <div class="about-facts">
+        <div class="fact"><span>💼 {t.about.factRole}</span><span>{profile.role}</span></div>
+        <div class="fact"><span>📍 {t.about.factLocation}</span><span>{t.about.locationValue}</span></div>
+        <div class="fact"><span>🎯 {t.about.factFocus}</span><span>{t.about.focusValue}</span></div>
+        <div class="fact"><span>🗣️ {t.about.factLanguages}</span><span>{t.about.languagesValue}</span></div>
+      </div>
+    </div>
+    <p id="emea-note" class="footnote" set:html={t.about.footnoteHtml}></p>
+  </div>
+</section>
+
+<!-- Focus areas with partners -->
+<section id="focus">
+  <div class="container">
+    <p class="eyebrow">What I do</p>
+    <h2 class="section-title">Focus areas</h2>
+    <p class="section-lead">Areas where I help Microsoft partners design, build, and ship.</p>
+    <div class="grid grid-3">
+      {topics.map((tp) => (
+        <article class="card">
+          <div class="interest-icon" aria-hidden="true">{tp.icon}</div>
+          <h3>{tp.title}</h3>
+          <p>{tp.description}</p>
+          <div class="tag-row">
+            {tp.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="what-i-do">
+      <h3 class="experience-group-title">In a typical week</h3>
+      <p class="section-lead">
+        My work has a particular focus on the German market.
+      </p>
+      <ul class="what-i-do-list">
+        {whatIDo.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="container">
+    <p class="eyebrow">Career</p>
+    <h2 class="section-title">Work experience</h2>
+    <p class="section-lead">Where I've worked and what I focused on.</p>
+
+    <h3 class="experience-group-title">My Microsoft journey</h3>
+    <div class="timeline">
+      {experienceMicrosoft.map((e) => (
+        <div class="timeline-item">
+          <h3>{e.role}</h3>
+          <p class="timeline-meta">{e.period}</p>
+          <p>{e.summary}</p>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="experience-group-title">When I thought I wanted to work as an engineer</h3>
+    <div class="timeline">
+      {experienceEngineering.map((e) => (
+        <div class="timeline-item">
+          <h3>{e.role} · <span style="color:var(--accent)">{e.org}</span></h3>
+          <p class="timeline-meta">{e.period}</p>
+          <p>{e.summary}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section id="education">
+  <div class="container">
+    <p class="eyebrow">Education</p>
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+      {education.map((e) => (
+        <div class="timeline-item">
+          <h3>{e.degree} · <span style="color:var(--accent)">{e.org}</span></h3>
+          <p class="timeline-meta">{e.period}</p>
+          <p>{e.summary}</p>
+          {e.thesisLink && (
+            <p style="margin:0.5rem 0 0">
+              <a href={e.thesisLink} target="_blank" rel="noopener">Read my thesis →</a>
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+  <div class="container">
+    <p class="eyebrow">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-lead">
+      Microsoft and Databricks certifications.
+    </p>
+    <div class="cert-group">
+      <h3>Associate level</h3>
+      <ul class="skill-list">
+        {certificationsAssociate.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+    <div class="cert-group">
+      <h3>Fundamentals</h3>
+      <ul class="skill-list">
+        {certificationsFundamentals.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="container">
+    <p class="eyebrow">Toolbox</p>
+    <h2 class="section-title">Skills</h2>
+    <p class="section-lead">Technologies and practices I work with regularly.</p>
+    {skillGroups.map((g) => (
+      <div class="skill-group">
+        <h3>{g.name}</h3>
+        <ul class="skill-list">
+          {g.items.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- Community & Inclusion -->
+<section id="community">
+  <div class="container">
+    <p class="eyebrow">What I care about</p>
+    <h2 class="section-title">Community &amp; inclusion</h2>
+    <p class="section-lead">
+      Beyond architecture, I'm passionate about multicultural communities and inclusion — bringing
+      people together and making sure everyone has a seat at the table.
+    </p>
+    <div class="grid grid-3">
+      {community.map((c) => (
+        <article class="card">
+          <div class="interest-icon" aria-hidden="true">{c.icon}</div>
+          <h3>{c.title}</h3>
+          <p style="margin:0" set:html={c.description}></p>
+          {c.bullets && (
+            <ul style="margin:0.75rem 0 0; padding-left:1.1rem">
+              {c.bullets.map((b) => <li set:html={b}></li>)}
+            </ul>
+          )}
+          {c.note && <p style="margin:0.75rem 0 0">{c.note}</p>}
+          {c.links && (
+            <p style="margin:0.75rem 0 0" class="community-links">
+              {c.links.map((l) => (
+                <a href={l.url} target="_blank" rel="noopener">{l.label} →</a>
+              ))}
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Blog preview -->
+{articles.length > 0 && (
+  <section id="blog-preview">
+    <div class="container">
+      <p class="eyebrow">Writing</p>
+      <h2 class="section-title">From the blog</h2>
+      <p class="section-lead">Articles I've published on cloud, AI, and architecture.</p>
+      <ul class="post-list">
+        {articles.slice(0, 3).map((a) => (
+          <li class="post-item card">
+            <span class="post-source">{a.source}</span>
+            <h3><a href={a.url} target="_blank" rel="noopener">{a.title}</a></h3>
+            <p style="margin:0">{a.description}</p>
+          </li>
+        ))}
+      </ul>
+      <p style="margin-top:1.5rem">
+        <a class="btn btn-ghost" href={`${base}blog`}>All articles →</a>
+      </p>
+    </div>
+  </section>
+)}
+
+<!-- Resources -->
+<section id="resources">
+  <div class="container">
+    <p class="eyebrow">Toolbox</p>
+    <h2 class="section-title">Resources</h2>
+    <p class="section-lead">{resourceIntro}</p>
+    <div class="grid grid-2">
+      {resourceGroups.map((g) => (
+        <article class="card">
+          <div class="interest-icon" aria-hidden="true">{g.icon}</div>
+          <h3>{g.name}</h3>
+          {g.note && <p style="margin:0 0 0.5rem" class="muted">{g.note}</p>}
+          {g.links.length > 0 ? (
+            <ul class="resource-list">
+              {g.links.map((l) => (
+                <li>
+                  <a href={l.url} target="_blank" rel="noopener">{l.label} →</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style="margin:0" class="muted">Links coming soon.</p>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Interests -->
+<section id="interests">
+  <div class="container">
+    <p class="eyebrow">Beyond work</p>
+    <h2 class="section-title">Personal interests</h2>
+    <p class="section-lead">
+      When I'm not designing data and AI solutions, I'm usually outdoors — most often on a mountain trail.
+    </p>
+    <div class="grid grid-3">
+      {interests.map((i) => (
+        <article class="card">
+          <div class="interest-icon" aria-hidden="true">{i.icon}</div>
+          <h3>{i.title}</h3>
+          <p style="margin:0">{i.description}</p>
+          {i.bullets && (
+            <ul class="interest-bullets">
+              {i.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          )}
+          {i.note && <p style="margin:0">{i.note}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title">Let's connect</h2>
+    <p class="section-lead" style="margin-inline:auto">
+      Interested in collaborating, or just want to say hi? I'd love to hear from you.
+    </p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href={`mailto:${profile.email}`}>Email me</a>
+      <button class="btn btn-ghost copy-email" data-email={profile.email} type="button">Copy email</button>
+      <a class="btn btn-ghost" href={profile.linkedin} rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href={profile.github} rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Copy-email button with brief "Copied!" feedback
+  (function () {
+    document.addEventListener('click', async (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const btn = target.closest('.copy-email');
+      if (!btn) return;
+      const email = btn.getAttribute('data-email');
+      if (!email) return;
+      try {
+        await navigator.clipboard.writeText(email);
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1800);
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  })();
+</script>

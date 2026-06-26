@@ -13,5 +13,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://ChristinaPa.github.io',
   base: '/',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'el', 'de'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [sitemap()],
 });

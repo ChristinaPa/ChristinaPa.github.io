@@ -102,6 +102,7 @@ export interface Translation {
     eyebrow: string;
     title: string;
     lead: string;
+    note: string;
     allArticles: string;
   };
   resources: {
@@ -313,6 +314,8 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Writing',
       title: 'From the blog',
       lead: "Articles I've published on cloud, AI, and architecture.",
+      note:
+        'My writing is scattered across a few different platforms — LinkedIn, the Microsoft community, and more — so I gather it all here in one place to make it easier to find.',
       allArticles: 'All articles →',
     },
     resources: {
@@ -548,6 +551,8 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Αρθρογραφία',
       title: 'Από το blog',
       lead: 'Άρθρα που έχω δημοσιεύσει για cloud, AI και αρχιτεκτονική.',
+      note:
+        'Τα άρθρα μου είναι διάσπαρτα σε διάφορες πλατφόρμες — LinkedIn, την κοινότητα της Microsoft και άλλες — γι’ αυτό τα συγκεντρώνω όλα εδώ σε ένα μέρος, για να βρίσκονται πιο εύκολα.',
       allArticles: 'Όλα τα άρθρα →',
     },
     resources: {
@@ -787,6 +792,8 @@ export const ui: Record<Locale, Translation> = {
       eyebrow: 'Publikationen',
       title: 'Aus dem Blog',
       lead: 'Artikel, die ich zu Cloud, KI und Architektur veröffentlicht habe.',
+      note:
+        'Meine Beiträge sind über verschiedene Plattformen verstreut — LinkedIn, die Microsoft-Community und mehr —, deshalb sammle ich sie hier an einem Ort, damit sie leichter zu finden sind.',
       allArticles: 'Alle Artikel →',
     },
     resources: {

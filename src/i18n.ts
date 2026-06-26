@@ -267,7 +267,7 @@ export const ui: Record<Locale, Translation> = {
       title: 'Skills',
       lead: 'Technologies and practices I work with regularly.',
       toolboxTitle: 'My toolbox',
-      groupNames: ['Data & Analytics', 'AI', 'GitHub & DevOps'],
+      groupNames: ['Data & Analytics', 'AI'],
     },
     community: {
       eyebrow: 'What I care about',
@@ -503,7 +503,7 @@ export const ui: Record<Locale, Translation> = {
       title: 'Δεξιότητες',
       lead: 'Τεχνολογίες και πρακτικές με τις οποίες δουλεύω τακτικά.',
       toolboxTitle: 'Η εργαλειοθήκη μου',
-      groupNames: ['Data & Analytics', 'AI', 'GitHub & DevOps'],
+      groupNames: ['Data & Analytics', 'AI'],
     },
     community: {
       eyebrow: 'Αυτά που με νοιάζουν',
@@ -743,7 +743,7 @@ export const ui: Record<Locale, Translation> = {
       title: 'Fähigkeiten',
       lead: 'Technologien und Methoden, mit denen ich regelmäßig arbeite.',
       toolboxTitle: 'Mein Werkzeugkasten',
-      groupNames: ['Data & Analytics', 'AI', 'GitHub & DevOps'],
+      groupNames: ['Data & Analytics', 'AI'],
     },
     community: {
       eyebrow: 'Was mir wichtig ist',

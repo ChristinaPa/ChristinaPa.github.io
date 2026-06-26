@@ -47,6 +47,9 @@ npm run preview  # preview the production build locally
 
 Open Copilot Chat in VS Code and try the prompts below. Replace the example details with your own. Copilot can edit the data objects and styles directly for you.
 
+> [!TIP]
+> I used my own LinkedIn profile and CV as inspiration when writing these prompts — pasting in sections of them gave Copilot the context to fill in accurate roles, dates, and wording. Doing the same with your LinkedIn and CV is the quickest way to personalize the content.
+
 #### Update your profile
 
 ```text

@@ -1,10 +1,13 @@
 ---
-const { title, description, lang = 'en' } = Astro.props as { title: string; description?: string; lang?: Locale };
+import { ClientRouter } from 'astro:transitions';
 import { getTranslation, locales, localeNames, localeLabels, type Locale } from '../i18n';
+const { title, description, lang = 'en', image } = Astro.props as { title: string; description?: string; lang?: Locale; image?: string };
 const base = import.meta.env.BASE_URL;
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonical = site + Astro.url.pathname;
-const ogImage = `${site}${base}og-image.png`;
+const ogImage = image
+  ? (image.startsWith('http') ? image : `${site}${base}${image.replace(/^\//, '')}`)
+  : `${site}${base}og-image.png`;
 const t = getTranslation(lang);
 
 // Locale home URLs for the language switcher.
@@ -83,12 +86,14 @@ const nav = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description ?? ''} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+    <ClientRouter />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -143,30 +148,34 @@ const nav = [
 
     <script is:inline>
       // Scroll-reveal: fade/slide elements in as they enter the viewport.
+      // Re-runs on every navigation (astro:page-load) so View Transitions keep working.
       (function () {
-        const selector = '.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item';
-        const els = Array.from(document.querySelectorAll(selector));
-        if (!els.length) return;
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce || !('IntersectionObserver' in window)) {
-          els.forEach((el) => el.classList.add('is-visible'));
-          return;
+        function init() {
+          const selector = '.card, .timeline-item, .cert-group, .skill-group, .toolbox, .what-i-do-list li, .post-item';
+          const els = Array.from(document.querySelectorAll(selector));
+          if (!els.length) return;
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduce || !('IntersectionObserver' in window)) {
+            els.forEach((el) => el.classList.add('is-visible'));
+            return;
+          }
+          const observer = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const siblings = Array.from(el.parentElement ? el.parentElement.children : [el]);
+                const idx = Math.max(0, siblings.indexOf(el));
+                el.style.transitionDelay = Math.min(idx, 6) * 80 + 'ms';
+                el.classList.add('is-visible');
+                obs.unobserve(el);
+              });
+            },
+            { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+          );
+          els.forEach((el) => observer.observe(el));
         }
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              const el = entry.target;
-              const siblings = Array.from(el.parentElement ? el.parentElement.children : [el]);
-              const idx = Math.max(0, siblings.indexOf(el));
-              el.style.transitionDelay = Math.min(idx, 6) * 80 + 'ms';
-              el.classList.add('is-visible');
-              obs.unobserve(el);
-            });
-          },
-          { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
-        );
-        els.forEach((el) => observer.observe(el));
+        document.addEventListener('astro:page-load', init);
       })();
     </script>
 
@@ -174,10 +183,13 @@ const nav = [
       // Theme toggle with persistence + system preference fallback
       (function () {
         const root = document.documentElement;
-        const stored = localStorage.getItem('theme');
-        // Dark mode is the default; respect an explicit saved preference.
-        const theme = stored ?? 'dark';
-        root.dataset.theme = theme;
+        const apply = () => {
+          // Dark mode is the default; respect an explicit saved preference.
+          root.dataset.theme = localStorage.getItem('theme') ?? 'dark';
+        };
+        apply();
+        // Re-apply after a View Transition swap so the theme doesn't flash back to default.
+        document.addEventListener('astro:after-swap', apply);
 
         document.addEventListener('click', (e) => {
           const target = e.target;
@@ -200,49 +212,56 @@ const nav = [
     </script>
 
     <script is:inline>
-      // Back-to-top button: show after scrolling, smooth-scroll to top
+      // Back-to-top button: show after scrolling, smooth-scroll to top.
+      // Listeners live on window/document (persist across navigation); button is re-queried each time.
       (function () {
-        const btn = document.querySelector('.back-to-top');
-        if (!btn) return;
         const onScroll = () => {
+          const btn = document.querySelector('.back-to-top');
+          if (!btn) return;
           if (window.scrollY > 600) btn.removeAttribute('hidden');
           else btn.setAttribute('hidden', '');
         };
         window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-        btn.addEventListener('click', () => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.addEventListener('click', (e) => {
+          if (e.target instanceof Element && e.target.closest('.back-to-top')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         });
+        document.addEventListener('astro:page-load', onScroll);
       })();
     </script>
 
     <script is:inline>
-      // Scrollspy: highlight the nav link of the section currently in view
+      // Scrollspy: highlight the nav link of the section currently in view.
+      // Re-runs on every navigation (astro:page-load) so it works after View Transitions.
       (function () {
-        const links = Array.from(document.querySelectorAll('.nav-menu a[href*="#"]'));
-        if (!links.length) return;
-        const map = new Map();
-        for (const link of links) {
-          const hash = link.getAttribute('href')?.split('#')[1];
-          if (!hash) continue;
-          const section = document.getElementById(hash);
-          if (section) map.set(section, link);
-        }
-        if (!map.size) return;
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              const link = map.get(entry.target);
-              if (!link) continue;
-              if (entry.isIntersecting) {
-                links.forEach((l) => l.classList.remove('active'));
-                link.classList.add('active');
+        function init() {
+          const links = Array.from(document.querySelectorAll('.nav-menu a[href*="#"]'));
+          if (!links.length) return;
+          const map = new Map();
+          for (const link of links) {
+            const hash = link.getAttribute('href')?.split('#')[1];
+            if (!hash) continue;
+            const section = document.getElementById(hash);
+            if (section) map.set(section, link);
+          }
+          if (!map.size) return;
+          const observer = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                const link = map.get(entry.target);
+                if (!link) continue;
+                if (entry.isIntersecting) {
+                  links.forEach((l) => l.classList.remove('active'));
+                  link.classList.add('active');
+                }
               }
-            }
-          },
-          { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-        );
-        map.forEach((_, section) => observer.observe(section));
+            },
+            { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+          );
+          map.forEach((_, section) => observer.observe(section));
+        }
+        document.addEventListener('astro:page-load', init);
       })();
     </script>
   </body>

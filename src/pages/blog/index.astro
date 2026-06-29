@@ -1,15 +1,34 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { articles } from '../../data/articles';
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://christinapa.github.io';
+
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Christina Pardali — Writing',
+  description: 'Articles by Christina Pardali on cloud, AI, and architecture.',
+  url: `${site}/blog`,
+  author: { '@type': 'Person', name: 'Christina Pardali' },
+  blogPost: articles.map((article) => ({
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.description,
+    url: article.url,
+    author: { '@type': 'Person', name: 'Christina Pardali' },
+  })),
+};
 ---
 
 <BaseLayout title="Blog — Christina Pardali" description="Articles and writing by Christina Pardali.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogJsonLd)} />
   <section>
     <div class="container">
       <p class="eyebrow">Writing</p>
       <h1 class="section-title">Blog</h1>
       <p class="section-lead">Articles I've published on cloud, AI, and architecture.</p>
-      <p class="muted" style="margin:-0.5rem 0 1.5rem; max-width:60ch">My writing is scattered across a few different platforms — LinkedIn, the Microsoft community, and more — so I gather it all here in one place to make it easier to find.</p>
+      <p class="muted" style="margin:-0.5rem 0 1.5rem; max-width:60ch">My writing is scattered across a few different platforms — LinkedIn, the Microsoft community, and more — so I gather it all here in one place to make it easier to find. <a href="/rss.xml">Subscribe via RSS</a>.</p>
       <ul class="post-list">
         {articles.map((a) => (
           <li class="post-item card">

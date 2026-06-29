@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import profilePhoto from '../images/profile.png';
 import { articles } from '../data/articles';
 import { getTranslation, type Locale } from '../i18n';
 
@@ -135,13 +137,14 @@ const resourceGroupsMeta: { icon: string; links: { label: string; url: string }[
 <section class="hero">
   <div class="container hero-inner">
     <div class="avatar-wrap">
-      <img
+      <Image
         class="avatar"
-        src={`${base}profile.png?v=20260626b`}
+        src={profilePhoto}
         alt={profile.name}
-        width="150"
-        height="150"
+        width={300}
+        height={300}
         loading="eager"
+        fetchpriority="high"
         onerror="this.style.display='none'"
       />
       <span class="avatar-initials" aria-hidden="true">CP</span>

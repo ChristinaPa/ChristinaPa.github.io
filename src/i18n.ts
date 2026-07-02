@@ -378,7 +378,7 @@ export const ui: Record<Locale, Translation> = {
       skills: 'Δεξιότητες',
       community: 'Κοινότητα',
       blog: 'Blog',
-      resources: 'Πόροι',
+      resources: 'Χρήσιμα websites',
       interests: 'Ενδιαφέροντα',
       contact: 'Επικοινωνία',
     },
@@ -551,7 +551,7 @@ export const ui: Record<Locale, Translation> = {
     },
     resources: {
       eyebrow: 'Εργαλειοθήκη',
-      title: 'Πόροι',
+      title: 'Χρήσιμα websites',
       intro:
         'Αυτά είναι μερικά από τα προσωπικά μου go-to links για να σε βοηθήσουν στη διαδρομή σου. Με τα σημερινά εργαλεία AI μπορείς να βρεις άφθονους πόρους μόνος σου — αλλά αυτοί είναι εκείνοι που έχω δει να βοηθούν πραγματικά τους συνεργάτες και τους πελάτες με τους οποίους συνεργάζομαι. Θεώρησέ τους προσωπικές μου προτάσεις.',
       groupNames: ['Αρχιτεκτονικές Agentic AI', 'Εκσυγχρονισμός του SDLC με γνώμονα το GitHub'],
